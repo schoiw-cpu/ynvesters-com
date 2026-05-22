@@ -8,8 +8,8 @@ const POSTS_DIR = path.join(__dirname, '../src/content/posts');
 
 const RSS_FEEDS = [
   'https://www.producthunt.com/feed',
-  'https://feeds.feedburner.com/techcrunch/startups',
-  'https://www.theverge.com/ai-artificial-intelligence/rss/index.xml',
+  'https://techcrunch.com/category/artificial-intelligence/feed/',
+  'https://feeds.feedburner.com/venturebeat/SZYF',
 ];
 
 const HN_SEARCH = 'https://hn.algolia.com/api/v1/search?tags=show_hn&query=AI+tool&hitsPerPage=10';

@@ -24,7 +24,8 @@ const SYSTEM_PROMPT = `You are a senior technology writer at Ynvesters, an AI to
 Your writing is clear, specific, and evidence-based. You cite sources inline (links in markdown).
 You never make up statistics. You always include real pricing, real features, and real limitations.
 You write for busy professionals who want actionable information, not marketing copy.
-Output must be valid MDX (Markdown with JSX support) — no raw HTML tags outside of MDX components.`;
+Output must be valid MDX (Markdown with JSX support) — no raw HTML tags outside of MDX components.
+CRITICAL: Output ONLY the raw MDX content. Do NOT wrap in code fences (\`\`\`mdx or \`\`\`). Start directly with the --- frontmatter delimiter.`;
 
 function pickTemplate() {
   return STYLE_TEMPLATES[Math.floor(Math.random() * STYLE_TEMPLATES.length)];
@@ -87,7 +88,14 @@ Output ONLY the MDX content (frontmatter + body), nothing else.`;
     system: SYSTEM_PROMPT,
   });
 
-  const content = response.content[0]?.text ?? '';
+  let content = response.content[0]?.text ?? '';
+
+  // Strip markdown code fences if Claude wrapped output (e.g., ```mdx ... ```)
+  const fenceMatch = content.match(/^```(?:mdx|markdown|md)?\s*\n([\s\S]*?)\n```\s*$/);
+  if (fenceMatch) {
+    content = fenceMatch[1];
+  }
+
   const wordCount = content.split(/\s+/).length;
 
   console.log(`[generate] Generated ~${wordCount} words`);
