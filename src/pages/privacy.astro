@@ -1,0 +1,50 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+const updated = '2026-05-23';
+---
+
+<BaseLayout
+  title="Privacy Policy – Ynvesters"
+  description="Privacy policy for Ynvesters — how we handle data, cookies, and third-party advertising."
+>
+  <div style="max-width: var(--max-width); margin: 0 auto; padding: 3rem 1.5rem;">
+    <h1>Privacy Policy</h1>
+    <p style="color:var(--color-text-muted); font-size:0.9rem;">Last updated: {updated}</p>
+
+    <h2>Overview</h2>
+    <p>Ynvesters ("we", "us") operates ynvesters.com. This page explains how we handle information when you visit our site.</p>
+
+    <h2>Information We Collect</h2>
+    <p>We do not directly collect personal information. When you visit the site:</p>
+    <ul>
+      <li>Cloudflare may log your IP address for security and performance purposes.</li>
+      <li>Google Analytics (if enabled) collects anonymized usage data.</li>
+      <li>Google AdSense uses cookies to serve relevant advertisements.</li>
+    </ul>
+
+    <h2>Cookies</h2>
+    <p>
+      This site uses cookies placed by Google AdSense and, optionally, Google Analytics.
+      These are third-party cookies used for advertising personalization and audience measurement.
+      You can opt out of personalized advertising via
+      <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener noreferrer">Google Ads Settings</a>
+      or the <a href="https://optout.networkadvertising.org/" target="_blank" rel="noopener noreferrer">NAI opt-out tool</a>.
+    </p>
+
+    <h2>Google AdSense</h2>
+    <p>
+      We use Google AdSense to display advertisements. Google may use cookies (including the DoubleClick cookie) to serve ads
+      based on your prior visits to this site or other sites. You can review Google's privacy policy at
+      <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">policies.google.com/privacy</a>.
+    </p>
+
+    <h2>Third-Party Links</h2>
+    <p>Articles on this site link to external websites. We are not responsible for the privacy practices of those sites.</p>
+
+    <h2>Data Retention</h2>
+    <p>We do not store personal data on our servers. All data collection is handled by third-party services under their own privacy policies.</p>
+
+    <h2>Contact</h2>
+    <p>For privacy-related questions, please use our <a href="/contact">contact page</a>.</p>
+  </div>
+</BaseLayout>

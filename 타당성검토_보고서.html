@@ -1,0 +1,715 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>AdSense 완전 자동화 웹사이트 — 타당성 검토 보고서</title>
+<style>
+  :root {
+    --bg: #0f1419;
+    --panel: #1a2128;
+    --panel-2: #232c36;
+    --border: #2e3a47;
+    --text: #e7ecf2;
+    --muted: #9aa7b5;
+    --accent: #4f9cf9;
+    --accent-2: #7ad6c1;
+    --good: #4ade80;
+    --warn: #fbbf24;
+    --bad: #f87171;
+    --maxw: 980px;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard", "Segoe UI", "Noto Sans KR", sans-serif;
+    font-size: 15px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 48px 24px 80px; }
+  header.hero {
+    background: linear-gradient(135deg, #1d3b6f 0%, #0f1419 100%);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 40px 36px;
+    margin-bottom: 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  header.hero::after {
+    content: ""; position: absolute; right: -80px; top: -80px;
+    width: 280px; height: 280px;
+    background: radial-gradient(circle, rgba(79,156,249,0.25), transparent 70%);
+  }
+  .badge {
+    display: inline-block;
+    padding: 4px 12px;
+    background: rgba(79,156,249,0.15);
+    color: var(--accent);
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-bottom: 16px;
+  }
+  h1 { font-size: 32px; line-height: 1.25; margin: 0 0 12px; letter-spacing: -0.5px; }
+  h1 .sub { color: var(--muted); font-weight: 500; font-size: 18px; display: block; margin-top: 6px; }
+  h2 {
+    font-size: 22px;
+    margin: 48px 0 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+    letter-spacing: -0.3px;
+  }
+  h2 .num {
+    display: inline-block; width: 32px; height: 32px;
+    background: var(--accent); color: #fff;
+    border-radius: 8px; text-align: center; line-height: 32px;
+    font-size: 14px; margin-right: 12px; vertical-align: middle;
+  }
+  h3 { font-size: 17px; margin: 28px 0 10px; color: var(--accent-2); }
+  p { margin: 10px 0; }
+  ul { padding-left: 22px; }
+  li { margin: 6px 0; }
+  code, pre {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 13px;
+  }
+  code { background: var(--panel-2); padding: 1px 6px; border-radius: 4px; }
+  pre {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 18px;
+    overflow-x: auto;
+    line-height: 1.55;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  .grid { display: grid; gap: 14px; }
+  .grid-2 { grid-template-columns: 1fr 1fr; }
+  .grid-3 { grid-template-columns: repeat(3, 1fr); }
+  @media (max-width: 720px) {
+    .grid-2, .grid-3 { grid-template-columns: 1fr; }
+  }
+
+  .card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px 20px;
+  }
+  .card h4 { margin: 0 0 8px; font-size: 14px; color: var(--muted); font-weight: 600; }
+  .card .v { font-size: 24px; font-weight: 700; letter-spacing: -0.3px; }
+  .v.good { color: var(--good); }
+  .v.warn { color: var(--warn); }
+  .v.bad  { color: var(--bad); }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    background: var(--panel);
+    border-radius: 10px;
+    overflow: hidden;
+    font-size: 14px;
+  }
+  th, td { padding: 11px 14px; text-align: left; border-bottom: 1px solid var(--border); }
+  th { background: var(--panel-2); color: var(--muted); font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+  tr:last-child td { border-bottom: 0; }
+  td.center, th.center { text-align: center; }
+
+  .pill { display: inline-block; padding: 3px 10px; border-radius: 999px; font-size: 12px; font-weight: 600; }
+  .pill.good { background: rgba(74,222,128,0.15); color: var(--good); }
+  .pill.warn { background: rgba(251,191,36,0.15); color: var(--warn); }
+  .pill.bad  { background: rgba(248,113,113,0.15); color: var(--bad); }
+  .pill.neutral { background: rgba(154,167,181,0.15); color: var(--muted); }
+
+  .traffic-light { display: inline-flex; align-items: center; gap: 6px; font-weight: 600; }
+  .dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; }
+  .dot.good { background: var(--good); box-shadow: 0 0 8px rgba(74,222,128,0.5); }
+  .dot.warn { background: var(--warn); box-shadow: 0 0 8px rgba(251,191,36,0.5); }
+  .dot.bad  { background: var(--bad); box-shadow: 0 0 8px rgba(248,113,113,0.5); }
+
+  .callout {
+    border-left: 3px solid var(--accent);
+    background: rgba(79,156,249,0.06);
+    padding: 14px 18px;
+    border-radius: 6px;
+    margin: 16px 0;
+  }
+  .callout.warn { border-left-color: var(--warn); background: rgba(251,191,36,0.06); }
+  .callout.bad  { border-left-color: var(--bad);  background: rgba(248,113,113,0.06); }
+  .callout strong { color: var(--accent); }
+  .callout.warn strong { color: var(--warn); }
+  .callout.bad  strong { color: var(--bad); }
+
+  .chart-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 22px;
+    margin: 16px 0;
+  }
+  .chart-title { font-size: 14px; color: var(--muted); font-weight: 600; margin-bottom: 14px; }
+
+  .pipeline {
+    display: flex; flex-direction: column; gap: 10px; margin: 18px 0;
+  }
+  .step {
+    background: var(--panel); border: 1px solid var(--border); border-radius: 10px;
+    padding: 14px 16px; display: flex; align-items: center; gap: 14px;
+  }
+  .step .n {
+    flex: 0 0 36px; height: 36px; border-radius: 8px;
+    background: linear-gradient(135deg, var(--accent), #2563eb);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 14px; color: #fff;
+  }
+  .step .body { flex: 1; }
+  .step .title { font-weight: 600; font-size: 15px; }
+  .step .desc { color: var(--muted); font-size: 13px; }
+
+  footer { margin-top: 60px; padding-top: 24px; border-top: 1px solid var(--border); color: var(--muted); font-size: 13px; text-align: center; }
+
+  .toc {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 32px;
+  }
+  .toc h4 { margin: 0 0 10px; font-size: 13px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
+  .toc ol { margin: 0; padding-left: 22px; }
+  .toc li { margin: 4px 0; }
+  .toc a { color: var(--text); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <span class="badge">Feasibility Report · 2026-05-22</span>
+    <h1>
+      AdSense 완전 자동화 웹사이트 타당성 검토
+      <span class="sub">영어 단일 · Fully-Auto · Astro + Cloudflare Pages</span>
+    </h1>
+    <p style="color: var(--muted); margin-bottom: 0;">
+      이미 AdSense 승인된 도메인(재구매 가능) 자산을 활용해, 광고 RPM이 높은 분야에서
+      완전 자동화로 운영되는 영문 콘텐츠 사이트를 구축하는 계획에 대한 타당성 검토 보고서.
+    </p>
+  </header>
+
+  <nav class="toc">
+    <h4>목차</h4>
+    <ol>
+      <li><a href="#summary">한눈에 보는 결론</a></li>
+      <li><a href="#signal">신호등 평가</a></li>
+      <li><a href="#niche">니치 선정</a></li>
+      <li><a href="#stack">기술 아키텍처</a></li>
+      <li><a href="#pipeline">자동화 파이프라인</a></li>
+      <li><a href="#risk">리스크 완화 전략</a></li>
+      <li><a href="#cost">비용 분석</a></li>
+      <li><a href="#phases">실행 단계</a></li>
+      <li><a href="#open">미해결 사항</a></li>
+      <li><a href="#refs">참고 자료</a></li>
+    </ol>
+  </nav>
+
+  <!-- 1. SUMMARY -->
+  <h2 id="summary"><span class="num">1</span>한눈에 보는 결론</h2>
+
+  <div class="grid grid-3">
+    <div class="card">
+      <h4>종합 판단</h4>
+      <div class="v warn">기술적 가능 · 정책적 도박</div>
+    </div>
+    <div class="card">
+      <h4>월 운영비</h4>
+      <div class="v good">$5 ~ $10</div>
+    </div>
+    <div class="card">
+      <h4>손익분기 (광고 수익)</h4>
+      <div class="v good">월 $10</div>
+    </div>
+    <div class="card">
+      <h4>예상 트래픽 (성공 시 12개월)</h4>
+      <div class="v">월 5만 ~ 30만 PV</div>
+    </div>
+    <div class="card">
+      <h4>예상 수익 (성공 시)</h4>
+      <div class="v">$300 ~ $3,000 / 월</div>
+    </div>
+    <div class="card">
+      <h4>실패 확률 (Fully-Auto 기준)</h4>
+      <div class="v bad">60 ~ 80%</div>
+    </div>
+  </div>
+
+  <div class="callout warn">
+    <strong>핵심 메시지.</strong>
+    2026년 현재 Google의 <em>Scaled Content Abuse</em> 정책과 <em>SpamBrain/Firefly</em> 시스템 강화로,
+    완전 무인 AI 양산 사이트는 90% 이상 색인 탈락 또는 AdSense BAN 위험에 노출됩니다.
+    그럼에도 사용자가 리스크를 감수하기로 결정했으므로, 본 계획서는
+    <strong>(A) BAN 회피 위장 전략</strong>과 <strong>(B) 실패 시 손해 최소화 구조</strong>를 동시에 추구합니다.
+  </div>
+
+  <!-- 2. SIGNAL -->
+  <h2 id="signal"><span class="num">2</span>신호등 평가</h2>
+
+  <table>
+    <thead>
+      <tr><th>항목</th><th>평가</th><th>근거 요약</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>기술적 구현</td>
+        <td><span class="traffic-light"><span class="dot good"></span>가능</span></td>
+        <td>Astro + Claude API + GitHub Actions + Cloudflare Pages 조합은 일 발행 자동화에 검증된 패턴 (HowDoIUseAI, klaude-blog).</td>
+      </tr>
+      <tr>
+        <td>AdSense 승인 유지</td>
+        <td><span class="traffic-light"><span class="dot warn"></span>위험</span></td>
+        <td>도메인 주제 전환 → 재심사 트리거 가능. 도메인 재구매 상태라 어차피 신규 신청에 가까움.</td>
+      </tr>
+      <tr>
+        <td>Google 색인</td>
+        <td><span class="traffic-light"><span class="dot bad"></span>고위험</span></td>
+        <td>16개월 실험: AI 글 초기 색인율 71% → 3개월 후 Top 100 노출 28%→3%. 신생 도메인+순수 AI = 90% 탈락.</td>
+      </tr>
+      <tr>
+        <td>Scaled Content Abuse</td>
+        <td><span class="traffic-light"><span class="dot bad"></span>고위험</span></td>
+        <td>2026 1분기 5만+ AdSense 계정 BAN. Fully-Auto는 정책 위반 신호 최대.</td>
+      </tr>
+      <tr>
+        <td>수익성 (성공 시)</td>
+        <td><span class="traffic-light"><span class="dot good"></span>높음</span></td>
+        <td>영어 RPM $4~6, AI 도구 카테고리 CPC $2~8. 월 5만 PV로 $300+ 가능.</td>
+      </tr>
+      <tr>
+        <td>손익분기</td>
+        <td><span class="traffic-light"><span class="dot good"></span>빠름</span></td>
+        <td>월 운영비 $5~10이라 광고 $10/월만 넘어도 흑자.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="chart-card">
+    <div class="chart-title">AI 콘텐츠 색인 / 노출률 시간 경과 (16개월 실험 기반)</div>
+    <svg viewBox="0 0 720 260" width="100%" preserveAspectRatio="xMidYMid meet">
+      <!-- axes -->
+      <line x1="60" y1="220" x2="700" y2="220" stroke="#2e3a47" stroke-width="1"/>
+      <line x1="60" y1="20"  x2="60"  y2="220" stroke="#2e3a47" stroke-width="1"/>
+      <!-- y grid -->
+      <g stroke="#1a2128" stroke-width="1">
+        <line x1="60" y1="60"  x2="700" y2="60"/>
+        <line x1="60" y1="100" x2="700" y2="100"/>
+        <line x1="60" y1="140" x2="700" y2="140"/>
+        <line x1="60" y1="180" x2="700" y2="180"/>
+      </g>
+      <!-- y labels -->
+      <g fill="#9aa7b5" font-size="11" text-anchor="end">
+        <text x="55" y="64">100%</text>
+        <text x="55" y="104">75%</text>
+        <text x="55" y="144">50%</text>
+        <text x="55" y="184">25%</text>
+        <text x="55" y="224">0%</text>
+      </g>
+      <!-- x labels (months) -->
+      <g fill="#9aa7b5" font-size="11" text-anchor="middle">
+        <text x="60"  y="240">0d</text>
+        <text x="170" y="240">36d</text>
+        <text x="280" y="240">3mo</text>
+        <text x="390" y="240">6mo</text>
+        <text x="500" y="240">9mo</text>
+        <text x="610" y="240">12mo</text>
+        <text x="700" y="240">16mo</text>
+      </g>
+      <!-- 색인율 (높게 시작, 점진 감소) -->
+      <polyline fill="none" stroke="#4ade80" stroke-width="2.5"
+        points="60,220 170,106 280,118 390,128 500,138 610,144 700,148"/>
+      <!-- Top100 노출 (급락) -->
+      <polyline fill="none" stroke="#f87171" stroke-width="2.5"
+        points="60,220 170,177 280,211 390,209 500,205 610,200 700,192"/>
+      <!-- legend -->
+      <g font-size="12" fill="#e7ecf2">
+        <rect x="450" y="28" width="14" height="3" fill="#4ade80"/>
+        <text x="470" y="33">색인율 (Indexation rate)</text>
+        <rect x="450" y="48" width="14" height="3" fill="#f87171"/>
+        <text x="470" y="53">Top 100 노출 페이지 비율</text>
+      </g>
+    </svg>
+    <p style="color: var(--muted); font-size: 12px; margin: 6px 0 0;">
+      출처: Search Engine Land — 16-month AI content experiment (2,000 페이지)
+    </p>
+  </div>
+
+  <!-- 3. NICHE -->
+  <h2 id="niche"><span class="num">3</span>니치 선정</h2>
+
+  <p>영어 단일 + Fully-Auto 환경에서 <strong>색인 성공률</strong>과 <strong>광고 단가</strong>를 동시에 만족시키는 카테고리를 매트릭스로 평가했습니다.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>니치</th>
+        <th class="center">CPC (USD)</th>
+        <th class="center">경쟁도</th>
+        <th class="center">E-E-A-T 장벽</th>
+        <th class="center">Fully-Auto 적합성</th>
+        <th class="center">최종</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Insurance / Legal / Mortgage</td>
+        <td class="center">$20~50</td>
+        <td class="center"><span class="pill bad">극심</span></td>
+        <td class="center"><span class="pill bad">매우 높음 (YMYL)</span></td>
+        <td class="center"><span class="pill bad">자동 글 거의 색인 X</span></td>
+        <td class="center"><span class="pill bad">제외</span></td>
+      </tr>
+      <tr>
+        <td>Personal Finance</td>
+        <td class="center">$5~15</td>
+        <td class="center"><span class="pill bad">극심</span></td>
+        <td class="center"><span class="pill warn">높음 (YMYL)</span></td>
+        <td class="center"><span class="pill bad">부적합</span></td>
+        <td class="center"><span class="pill bad">제외</span></td>
+      </tr>
+      <tr style="background: rgba(74,222,128,0.06);">
+        <td><strong>AI Tools Reviews / Comparison</strong></td>
+        <td class="center">$2~8</td>
+        <td class="center"><span class="pill warn">보통</span></td>
+        <td class="center"><span class="pill good">낮음 (비-YMYL)</span></td>
+        <td class="center"><span class="pill good">매우 적합</span></td>
+        <td class="center"><span class="pill good">1순위 ★</span></td>
+      </tr>
+      <tr>
+        <td>Cybersecurity How-to</td>
+        <td class="center">$5~12</td>
+        <td class="center"><span class="pill warn">중상</span></td>
+        <td class="center"><span class="pill warn">보통</span></td>
+        <td class="center"><span class="pill good">적합</span></td>
+        <td class="center"><span class="pill good">2순위</span></td>
+      </tr>
+      <tr>
+        <td>EV / Car Tech Comparison</td>
+        <td class="center">$3~10</td>
+        <td class="center"><span class="pill warn">중</span></td>
+        <td class="center"><span class="pill warn">보통</span></td>
+        <td class="center"><span class="pill good">적합</span></td>
+        <td class="center"><span class="pill good">3순위</span></td>
+      </tr>
+      <tr>
+        <td>Web3 / Crypto Tools</td>
+        <td class="center">$4~15</td>
+        <td class="center"><span class="pill warn">중</span></td>
+        <td class="center"><span class="pill warn">보통</span></td>
+        <td class="center"><span class="pill warn">변동성 큼</span></td>
+        <td class="center"><span class="pill neutral">후보</span></td>
+      </tr>
+      <tr>
+        <td>Software / SaaS Reviews</td>
+        <td class="center">$2~6</td>
+        <td class="center"><span class="pill warn">중</span></td>
+        <td class="center"><span class="pill good">낮음</span></td>
+        <td class="center"><span class="pill good">적합</span></td>
+        <td class="center"><span class="pill neutral">후보</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <strong>최종 추천 — "AI Tools Discovery &amp; Comparison Hub"</strong><br/>
+    CPC는 Insurance보다 낮지만 <em>공급 부족 + AI 글이 AI 토픽에 메타적으로 자연스럽다</em>는 결정적 이점이 있습니다.
+    Product Hunt RSS · Hacker News · GitHub Trending에서 매일 새 소재 자동 수집 가능 → 콘텐츠 소재 무한.
+    YMYL이 아니므로 E-E-A-T 장벽이 낮아 Fully-Auto 카테고리 중 가장 색인 성공률이 높습니다.
+  </div>
+
+  <!-- 4. STACK -->
+  <h2 id="stack"><span class="num">4</span>기술 아키텍처</h2>
+
+  <div class="grid grid-2">
+    <div class="card">
+      <h4>스택 (확정)</h4>
+      <ul style="margin: 8px 0 0;">
+        <li>도메인 (재구매)</li>
+        <li>Cloudflare DNS / Pages — 무료, 무제한 대역폭</li>
+        <li>Astro 4.x + MDX — Zero-JS, 최고 CWV</li>
+        <li>GitHub Actions — cron 일 1회</li>
+        <li>Claude Sonnet 4.6 (배치 API 50% 할인)</li>
+        <li>Product Hunt RSS + Hacker News + Reddit JSON</li>
+        <li>Unsplash API — 이미지</li>
+        <li>AdSense Auto Ads + 본문 In-article</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>주요 패키지</h4>
+      <ul style="margin: 8px 0 0;">
+        <li><code>astro</code>, <code>@astrojs/sitemap</code>, <code>@astrojs/rss</code></li>
+        <li><code>@anthropic-ai/sdk</code> (배치 API)</li>
+        <li><code>unsplash-js</code></li>
+        <li><code>rss-parser</code></li>
+        <li><code>schema-dts</code> — JSON-LD 타입 안전</li>
+        <li>광고: <code>next-google-adsense</code> 패턴을 Astro로 이식</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>디렉토리 구조 (계획)</h3>
+<pre>
+/Users/namdalli/애드센스용 웹사이트 만들기/
+├── src/
+│   ├── pages/  (index, posts/[slug], tools/[slug], about, privacy, contact)
+│   ├── content/posts/*.mdx
+│   ├── components/  (AdUnit, ArticleSchema, AuthorByline)
+│   └── layouts/
+├── scripts/
+│   ├── discover-topics.mjs
+│   ├── generate-post.mjs
+│   ├── fetch-images.mjs
+│   └── orchestrator.mjs
+├── .github/workflows/daily-publish.yml
+├── public/  (ads.txt, robots.txt)
+├── astro.config.mjs
+└── package.json
+</pre>
+
+  <!-- 5. PIPELINE -->
+  <h2 id="pipeline"><span class="num">5</span>자동화 파이프라인 (일간 작업 흐름)</h2>
+
+  <div class="pipeline">
+    <div class="step"><div class="n">1</div><div class="body">
+      <div class="title">토픽 발굴</div>
+      <div class="desc">Product Hunt RSS + Hacker News API + 중복 제거 → 1개 토픽 선정</div>
+    </div></div>
+    <div class="step"><div class="n">2</div><div class="body">
+      <div class="title">1차 데이터 수집 (anti-slop 핵심)</div>
+      <div class="desc">공식 사이트 스크래핑 · GitHub 메타 · Reddit 실 사용자 후기 3~5개</div>
+    </div></div>
+    <div class="step"><div class="n">3</div><div class="body">
+      <div class="title">Claude 글 생성</div>
+      <div class="desc">문체 템플릿 10개 중 랜덤 · 1차 데이터 컨텍스트 주입 · 단어 수 1,500~2,200 랜덤</div>
+    </div></div>
+    <div class="step"><div class="n">4</div><div class="body">
+      <div class="title">이미지 자동화</div>
+      <div class="desc">Unsplash API 1~2장 + 어트리뷰션 자동 삽입</div>
+    </div></div>
+    <div class="step"><div class="n">5</div><div class="body">
+      <div class="title">품질 게이트</div>
+      <div class="desc">토큰 < 1,200 또는 자체 평가 < 7/10이면 폐기 → 그날 발행 건너뜀 (자연 속도 제한)</div>
+    </div></div>
+    <div class="step"><div class="n">6</div><div class="body">
+      <div class="title">커밋 + 푸시</div>
+      <div class="desc">git commit → main → Cloudflare Pages 자동 재배포</div>
+    </div></div>
+    <div class="step"><div class="n">7</div><div class="body">
+      <div class="title">색인 요청</div>
+      <div class="desc">sitemap.xml 갱신 + Google Search Console Indexing API 호출 (선택)</div>
+    </div></div>
+  </div>
+
+  <div class="callout">
+    <strong>의도적 발행 속도 제한.</strong>
+    cron은 일 1회지만 품질 게이트로 자연 reject 유도 + 주말 스킵 → 실제 발행은 <strong>주 5건 상한</strong>.
+    처음 30일은 <strong>주 3건만</strong> 발행해 Scaled Content Abuse 신호를 회피합니다.
+  </div>
+
+  <!-- 6. RISK -->
+  <h2 id="risk"><span class="num">6</span>리스크 완화 전략</h2>
+
+  <h3>Scaled Content Abuse 신호 회피</h3>
+  <table>
+    <thead><tr><th>위반 신호</th><th>회피 전략</th></tr></thead>
+    <tbody>
+      <tr><td>동일 템플릿 반복</td><td>10개 문체 템플릿 랜덤 (튜토리얼/리뷰/비교/뉴스/리스트형/Q&A 등)</td></tr>
+      <tr><td>출처 없는 주장</td><td>1차 데이터 수집 단계에서 실제 URL · 통계 주입</td></tr>
+      <tr><td>저자 정보 부재</td><td>About 페이지에 단일 의사 저자 (또는 "Editorial Team" 대체) <span class="pill warn">윤리 확인</span></td></tr>
+      <tr><td>발행 속도 비정상</td><td>주 5건 상한 · 주말 스킵 · 품질 게이트 자연 변동</td></tr>
+      <tr><td>광고 비율 과다</td><td>1,500자+ 글에만 광고 3개 상한 · 첫 화면 위는 1개만</td></tr>
+      <tr><td>외부 링크 부재</td><td>모든 글에 권위 사이트 외부 링크 3+ (위키 · GitHub · 공식 docs)</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Plan B — BAN 발생 시</h3>
+  <ul>
+    <li>도메인 1개에 자산 집중 금지 → <strong>백업 도메인 1개 추가 등록</strong> ($10/년) 권장</li>
+    <li>콘텐츠 DB는 GitHub에 매일 백업 → 도메인만 바꿔 즉시 재시작 가능</li>
+    <li>AdSense BAN은 사이트 단위로 시작될 수 있으므로 새 도메인 재신청 경로 유지</li>
+  </ul>
+
+  <!-- 7. COST -->
+  <h2 id="cost"><span class="num">7</span>비용 분석 (월 단위)</h2>
+
+  <div class="chart-card">
+    <div class="chart-title">월 운영비 구성 (USD)</div>
+    <svg viewBox="0 0 720 220" width="100%" preserveAspectRatio="xMidYMid meet">
+      <!-- bars -->
+      <g font-size="12" fill="#e7ecf2">
+        <!-- Domain -->
+        <text x="20" y="40">도메인 (월 환산)</text>
+        <rect x="200" y="28" width="25" height="18" rx="3" fill="#4f9cf9"/>
+        <text x="234" y="42">$1</text>
+
+        <!-- Hosting -->
+        <text x="20" y="72">Cloudflare Pages</text>
+        <rect x="200" y="60" width="2" height="18" rx="3" fill="#7ad6c1"/>
+        <text x="210" y="74">$0</text>
+
+        <!-- Actions -->
+        <text x="20" y="104">GitHub Actions</text>
+        <rect x="200" y="92" width="2" height="18" rx="3" fill="#7ad6c1"/>
+        <text x="210" y="106">$0</text>
+
+        <!-- Claude API -->
+        <text x="20" y="136">Claude Sonnet (배치)</text>
+        <rect x="200" y="124" width="125" height="18" rx="3" fill="#fbbf24"/>
+        <text x="334" y="138">$2 ~ $5</text>
+
+        <!-- Unsplash -->
+        <text x="20" y="168">Unsplash / RSS</text>
+        <rect x="200" y="156" width="2" height="18" rx="3" fill="#7ad6c1"/>
+        <text x="210" y="170">$0</text>
+
+        <!-- Total -->
+        <text x="20" y="200" font-weight="700">합계</text>
+        <rect x="200" y="188" width="200" height="18" rx="3" fill="#4ade80"/>
+        <text x="408" y="202" font-weight="700">$5 ~ $10 / 월</text>
+      </g>
+    </svg>
+  </div>
+
+  <p style="color: var(--muted);">
+    <strong>손익분기:</strong> AdSense 수익 월 $10만 넘어도 흑자.
+    영어권 RPM $4~6 기준 월 2,000~3,000 PV로 도달 가능한 수치.
+  </p>
+
+  <!-- 8. PHASES -->
+  <h2 id="phases"><span class="num">8</span>실행 단계</h2>
+
+  <div class="grid grid-2">
+    <div class="card">
+      <h4>Phase 1 — 인프라 부트스트랩 (1일차)</h4>
+      <ul>
+        <li>Astro 프로젝트 초기화</li>
+        <li>Cloudflare Pages ↔ GitHub 연동</li>
+        <li>ads.txt, robots.txt, sitemap 설정</li>
+        <li>도메인 DNS 연결</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>Phase 2 — 콘텐츠 파이프라인 (1~3일차)</h4>
+      <ul>
+        <li>discover-topics.mjs</li>
+        <li>generate-post.mjs (배치 API · 10템플릿)</li>
+        <li>fetch-images.mjs</li>
+        <li>orchestrator.mjs (품질 게이트 포함)</li>
+        <li>로컬 5건 시범 생성 + 수동 검토</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>Phase 3 — 사이트 외형 (3~4일차)</h4>
+      <ul>
+        <li>About / Privacy / Contact</li>
+        <li>AdUnit.astro (CLS-safe, lazyOnload)</li>
+        <li>JSON-LD (Article + Author + Org)</li>
+        <li>다크모드 reading-friendly 디자인</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>Phase 4 — 자동화 가동 (5일차~)</h4>
+      <ul>
+        <li>GitHub Actions cron 등록</li>
+        <li>API 키 → GitHub Secrets</li>
+        <li>첫 7일: 일 1건 · 매일 확인</li>
+        <li>30일 후 AdSense 광고 활성화</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>Phase 5 — 모니터링 (지속)</h4>
+      <ul>
+        <li>Search Console 색인 상태 주간 점검</li>
+        <li>AdSense 정책 알림 주간 점검</li>
+        <li>90일 시점 토픽 조정</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>End-to-End 검증</h4>
+      <ul>
+        <li><code>orchestrator.mjs --dry-run</code></li>
+        <li><code>npm run dev</code> 로컬 렌더링</li>
+        <li><code>npm run build</code> sitemap/RSS/ads.txt 확인</li>
+        <li>Lighthouse Performance/SEO 90+</li>
+        <li>CLS &lt; 0.1, INP &lt; 200ms</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 9. OPEN -->
+  <h2 id="open"><span class="num">9</span>실행 전 추가 확인 사항</h2>
+
+  <ol>
+    <li><strong>도메인명</strong> — 재구매할 도메인 확정 후 Phase 1에서 DNS 설정</li>
+    <li><strong>의사 저자 프로필 윤리</strong> — 가공 인물 사용 vs "Editorial Team" 단체 명의 대체</li>
+    <li><strong>AdSense 광고 활성화 시점</strong> — 첫날 vs 30개 글 누적 후 (후자 권장)</li>
+    <li><strong>백업 도메인 등록</strong> — BAN 대비 Plan B용 추가 도메인 ($10/년)</li>
+    <li><strong>콘텐츠 라이센스</strong> — CC-BY 표기 등 정책</li>
+  </ol>
+
+  <!-- 10. REFS -->
+  <h2 id="refs"><span class="num">10</span>참고 자료</h2>
+
+  <div class="grid grid-2">
+    <div class="card">
+      <h4>AdSense / Google 정책</h4>
+      <ul>
+        <li><a href="https://developers.google.com/search/blog/2024/03/core-update-spam-policies" target="_blank">Scaled Content Abuse 정책 발표</a></li>
+        <li><a href="https://patelinfomatic.co.in/Blog/danger-of-adsense-slop-ai-content-bans.html" target="_blank">AdSense slop BAN 사례</a></li>
+        <li><a href="https://searchengineland.com/ai-generated-content-google-search-experiment-472234" target="_blank">AI 콘텐츠 16개월 색인 실험</a></li>
+        <li><a href="https://blog.google/company-news/inside-google/company-announcements/defending-search-users-from-parasite-seo-spam/" target="_blank">Site Reputation Abuse</a></li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>자동화 오픈소스</h4>
+      <ul>
+        <li><a href="https://github.com/nickwinder/klaude-blog" target="_blank">klaude-blog (Astro + Claude)</a></li>
+        <li><a href="https://github.com/ruankie/ecrivai" target="_blank">ecrivai (LangChain)</a></li>
+        <li><a href="https://www.nocodelife.com/how-we-built-howdoiuseai/" target="_blank">HowDoIUseAI 사례</a></li>
+        <li><a href="https://github.com/soranoo/next-google-adsense" target="_blank">next-google-adsense (Astro 이식 참고)</a></li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>기술 스택</h4>
+      <ul>
+        <li><a href="https://www.cosmicjs.com/blog/astro-vs-nextjs-2026" target="_blank">Astro vs Next.js 2026</a></li>
+        <li><a href="https://www.digitalapplied.com/blog/core-web-vitals-2026-inp-lcp-cls-optimization-guide" target="_blank">Core Web Vitals 2026 가이드</a></li>
+        <li><a href="https://www.devtoolreviews.com/reviews/cloudflare-pages-pricing-bandwidth-limits-2026" target="_blank">Cloudflare Pages 무료 한계</a></li>
+        <li><a href="https://pecollective.com/tools/anthropic-api-pricing/" target="_blank">Claude API 가격 (2026)</a></li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>고수익 니치</h4>
+      <ul>
+        <li><a href="https://newormedia.com/blog/top-10-best-adsense-niches-and-keywords-for-publishers-in-2025/" target="_blank">Top AdSense Niches 2025</a></li>
+        <li><a href="https://partnerkin.com/en/blog/articles/adsense_rpm_rates_by_country" target="_blank">국가별 RPM 비교</a></li>
+        <li><a href="https://monetizepros.com/ad-sales/high-paying-ad-niches/" target="_blank">High-paying ad niches</a></li>
+        <li><a href="https://megadigital.ai/en/blog/best-adsense-niches/" target="_blank">Best AdSense Niches</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <footer>
+    <div>AdSense 완전 자동화 웹사이트 — 타당성 검토 보고서</div>
+    <div>작성일: 2026-05-22 · 사용자: schoiw@gmail.com</div>
+    <div style="margin-top:8px;">함께 제공된 파일: <code>계획서.md</code> (마크다운 본문)</div>
+  </footer>
+
+</div>
+</body>
+</html>

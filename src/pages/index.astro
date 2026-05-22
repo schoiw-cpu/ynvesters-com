@@ -1,0 +1,81 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import AdUnit from '../components/AdUnit.astro';
+
+const allPosts = await getCollection('posts');
+const posts = allPosts
+  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
+  .slice(0, 12);
+
+const featured = allPosts.find(p => p.data.featured) ?? posts[0];
+
+const formatDate = (d: Date) =>
+  d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+---
+
+<BaseLayout
+  title="Ynvesters – AI Tools Discovery & Comparison"
+  description="Find, compare, and choose the best AI tools for your workflow. In-depth reviews, comparisons, and how-to guides updated daily."
+>
+  <div style="max-width: var(--max-width-wide); margin: 0 auto; padding: 2rem 1.5rem;">
+
+    <section style="text-align:center; padding: 3rem 0 2rem;">
+      <h1 style="font-size:clamp(1.75rem,4vw,2.75rem); font-weight:800; margin:0 0 1rem; line-height:1.2;">
+        Discover the Best AI Tools<br/>for Your Workflow
+      </h1>
+      <p style="font-size:1.125rem; color:var(--color-text-muted); max-width:560px; margin:0 auto 1.5rem;">
+        Daily reviews, comparisons, and guides on the latest AI tools — no hype, just facts.
+      </p>
+    </section>
+
+    <AdUnit slot="top" />
+
+    {featured && (
+      <section style="margin-bottom: 3rem;">
+        <h2 style="font-size:1rem; text-transform:uppercase; letter-spacing:.08em; color:var(--color-text-muted); margin-bottom:1rem;">Featured</h2>
+        <a href={`/posts/${featured.slug}`} style="display:block; background:var(--color-bg2); border-radius:12px; overflow:hidden; text-decoration:none; color:inherit; border:1px solid var(--color-border);">
+          {featured.data.heroImage && (
+            <img src={featured.data.heroImage} alt={featured.data.heroImageAlt ?? featured.data.title} style="width:100%; height:280px; object-fit:cover;" loading="lazy" />
+          )}
+          <div style="padding:1.5rem;">
+            <span style="font-size:0.8rem; background:var(--color-accent); color:#fff; padding:0.2rem 0.6rem; border-radius:4px;">{featured.data.category}</span>
+            <h3 style="font-size:1.5rem; margin:0.75rem 0 0.5rem;">{featured.data.title}</h3>
+            <p style="color:var(--color-text-muted); margin:0 0 1rem;">{featured.data.description}</p>
+            <span style="font-size:0.85rem; color:var(--color-text-muted);">{formatDate(featured.data.pubDate)}</span>
+          </div>
+        </a>
+      </section>
+    )}
+
+    <section>
+      <h2 style="font-size:1.25rem; font-weight:700; margin-bottom:1.5rem;">Latest Reviews & Guides</h2>
+      <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:1.5rem;">
+        {posts.filter(p => p !== featured).map((post) => (
+          <article style="background:var(--color-bg2); border:1px solid var(--color-border); border-radius:10px; overflow:hidden;">
+            {post.data.heroImage && (
+              <a href={`/posts/${post.id}`}>
+                <img src={post.data.heroImage} alt={post.data.heroImageAlt ?? post.data.title} style="width:100%; height:180px; object-fit:cover;" loading="lazy" />
+              </a>
+            )}
+            <div style="padding:1.25rem;">
+              <span style="font-size:0.75rem; color:var(--color-accent); font-weight:600; text-transform:uppercase;">{post.data.category}</span>
+              <h3 style="font-size:1rem; margin:0.5rem 0; line-height:1.4;">
+                <a href={`/posts/${post.id}`} style="color:var(--color-text);">{post.data.title}</a>
+              </h3>
+              <p style="font-size:0.875rem; color:var(--color-text-muted); margin:0 0 0.75rem; line-height:1.5;">{post.data.description}</p>
+              <span style="font-size:0.8rem; color:var(--color-text-muted);">{formatDate(post.data.pubDate)}</span>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    {posts.length === 0 && (
+      <div style="text-align:center; padding:4rem 0; color:var(--color-text-muted);">
+        <p>Content launching soon. Check back tomorrow!</p>
+      </div>
+    )}
+
+  </div>
+</BaseLayout>

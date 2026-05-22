@@ -1,0 +1,53 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  pubDate: Date;
+  updatedDate?: Date;
+  heroImage?: string;
+  author?: string;
+  url: string;
+}
+const {
+  title,
+  description,
+  pubDate,
+  updatedDate,
+  heroImage,
+  author = 'AI Editorial Team',
+  url,
+} = Astro.props;
+
+const siteUrl = 'https://ynvesters.com';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: title,
+  description,
+  datePublished: pubDate.toISOString(),
+  dateModified: (updatedDate ?? pubDate).toISOString(),
+  url,
+  image: heroImage ? `${siteUrl}${heroImage}` : `${siteUrl}/og-default.png`,
+  author: {
+    '@type': 'Organization',
+    name: author,
+    url: `${siteUrl}/about`,
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Ynvesters',
+    url: siteUrl,
+    logo: {
+      '@type': 'ImageObject',
+      url: `${siteUrl}/favicon.svg`,
+    },
+  },
+  mainEntityOfPage: {
+    '@type': 'WebPage',
+    '@id': url,
+  },
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

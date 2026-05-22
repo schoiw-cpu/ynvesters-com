@@ -1,0 +1,23 @@
+---
+interface Props {
+  slot?: 'in-article' | 'top' | 'bottom';
+}
+const { slot: adSlot = 'in-article' } = Astro.props;
+---
+
+<!-- CLS-safe ad container: min-height prevents layout shift -->
+<div
+  class={`ad-unit ad-unit--${adSlot}`}
+  style="min-height: 90px; overflow: hidden; margin: 2rem auto; text-align: center;"
+  aria-label="Advertisement"
+>
+  <ins
+    class="adsbygoogle"
+    style="display:block"
+    data-ad-client="ca-pub-2470398277326337"
+    data-ad-format={adSlot === 'in-article' ? 'fluid' : 'auto'}
+    data-ad-layout={adSlot === 'in-article' ? 'in-article' : undefined}
+    data-full-width-responsive="true"
+  ></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>

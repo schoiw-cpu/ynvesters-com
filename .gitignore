@@ -1,0 +1,22 @@
+# 환경 변수 (API 키)
+.env
+.env.local
+.env.*.local
+
+# macOS
+.DS_Store
+
+# 의존성 (Astro 초기화 후 자동 생성)
+node_modules/
+.pnpm-store/
+
+# Astro 빌드 산출물
+dist/
+.astro/
+
+# 임시 파일
+*.log
+*.tmp
+
+# 키가 들어있는 원본 텍스트 파일 (실수로 커밋 방지)
+*api 정보.txt

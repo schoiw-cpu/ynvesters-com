@@ -1,0 +1,49 @@
+name: Daily Content Publish
+
+on:
+  schedule:
+    - cron: '0 6 * * 1-5'   # 06:00 UTC, Mon–Fri (주 5회)
+  workflow_dispatch:          # 수동 트리거도 가능
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run content pipeline
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          UNSPLASH_ACCESS_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY }}
+          UNSPLASH_APPLICATION_ID: ${{ secrets.UNSPLASH_APPLICATION_ID }}
+          SITE_URL: https://ynvesters.com
+        run: node scripts/orchestrator.mjs
+
+      - name: Check for new content
+        id: check
+        run: |
+          git diff --exit-code --quiet src/content/posts/ public/images/ || echo "has_changes=true" >> $GITHUB_OUTPUT
+
+      - name: Commit and push
+        if: steps.check.outputs.has_changes == 'true'
+        run: |
+          git config user.name "ynvesters-bot"
+          git config user.email "bot@ynvesters.com"
+          git add src/content/posts/ public/images/
+          git commit -m "post: auto-publish $(date -u '+%Y-%m-%d')"
+          git push
