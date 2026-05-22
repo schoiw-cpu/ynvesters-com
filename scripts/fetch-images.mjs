@@ -28,11 +28,26 @@ export async function fetchImage(query, slug) {
     }
 
     const data = await res.json();
-    const results = data.results ?? [];
+    let results = data.results ?? [];
 
+    // Fallback to generic tech queries if specific tool name returns nothing
     if (results.length === 0) {
-      console.warn(`[images] No results for query: "${query}"`);
-      return null;
+      const fallbacks = ['artificial intelligence technology', 'software productivity', 'computer technology'];
+      for (const fallback of fallbacks) {
+        const fbRes = await fetch(
+          `https://api.unsplash.com/search/photos?query=${encodeURIComponent(fallback)}&per_page=10&orientation=landscape`,
+          { headers: { Authorization: `Client-ID ${ACCESS_KEY}` } }
+        );
+        if (fbRes.ok) {
+          const fbData = await fbRes.json();
+          results = fbData.results ?? [];
+          if (results.length > 0) break;
+        }
+      }
+      if (results.length === 0) {
+        console.warn(`[images] No results even with fallback for: "${query}"`);
+        return null;
+      }
     }
 
     // Pick a random one from top 5 (avoid repetition)
