@@ -2,7 +2,7 @@ name: Daily Content Publish
 
 on:
   schedule:
-    - cron: '0 6 * * 1-5'   # 06:00 UTC, Mon–Fri (주 5회)
+    - cron: '0 6 * * *'     # 06:00 UTC, 매일 (주 7회) — 30개 도달 후 주 5회로 전환 예정
   workflow_dispatch:          # 수동 트리거도 가능
 
 jobs:

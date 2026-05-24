@@ -2,7 +2,7 @@
 import { discoverTopics } from './discover-topics.mjs';
 import { generatePost } from './generate-post.mjs';
 import { fetchImage } from './fetch-images.mjs';
-import { writeFile, mkdir } from 'fs/promises';
+import { writeFile, mkdir, readdir } from 'fs/promises';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
@@ -10,6 +10,25 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const POSTS_DIR = path.join(__dirname, '../src/content/posts');
 const DRY_RUN = process.argv.includes('--dry-run');
 const FORCE_TOPIC = process.argv.find(a => a.startsWith('--topic='))?.split('=')[1];
+
+// 30개 이상이면 주말 스킵 (UTC 기준 토=6, 일=0)
+const WEEKDAY_ONLY_THRESHOLD = 30;
+async function shouldSkipWeekend() {
+  const day = new Date().getUTCDay(); // 0=Sun, 6=Sat
+  if (day !== 0 && day !== 6) return false;
+  try {
+    const files = await readdir(POSTS_DIR);
+    const postCount = files.filter(f => f.endsWith('.md') || f.endsWith('.mdx')).length;
+    if (postCount >= WEEKDAY_ONLY_THRESHOLD) {
+      console.log(`[pipeline] ${postCount} posts reached — skipping weekend. (threshold: ${WEEKDAY_ONLY_THRESHOLD})`);
+      return true;
+    }
+    console.log(`[pipeline] Weekend run: ${postCount}/${WEEKDAY_ONLY_THRESHOLD} posts — continuing until threshold.`);
+  } catch {
+    // posts dir doesn't exist yet, continue
+  }
+  return false;
+}
 
 const MIN_WORD_COUNT = 1200;
 const MIN_QUALITY_SCORE = 7;
@@ -47,6 +66,8 @@ async function assessQuality(content) {
 
 async function run() {
   console.log(`\n=== Ynvesters Content Pipeline ${DRY_RUN ? '[DRY RUN]' : ''} ===\n`);
+
+  if (!DRY_RUN && await shouldSkipWeekend()) process.exit(0);
 
   // 1. Discover topics
   let topic;
