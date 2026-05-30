@@ -34,7 +34,7 @@ const formatDate = (d: Date) =>
     {featured && (
       <section style="margin-bottom: 3rem;">
         <h2 style="font-size:1rem; text-transform:uppercase; letter-spacing:.08em; color:var(--color-text-muted); margin-bottom:1rem;">Featured</h2>
-        <a href={`/posts/${featured.slug}`} style="display:block; background:var(--color-bg2); border-radius:12px; overflow:hidden; text-decoration:none; color:inherit; border:1px solid var(--color-border);">
+        <a href={`/posts/${featured.id}`} style="display:block; background:var(--color-bg2); border-radius:12px; overflow:hidden; text-decoration:none; color:inherit; border:1px solid var(--color-border);">
           {featured.data.heroImage && (
             <img src={featured.data.heroImage} alt={featured.data.heroImageAlt ?? featured.data.title} style="width:100%; height:280px; object-fit:cover;" loading="lazy" />
           )}
