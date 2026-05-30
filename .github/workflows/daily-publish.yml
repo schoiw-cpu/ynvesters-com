@@ -37,7 +37,7 @@ jobs:
       - name: Check for new content
         id: check
         run: |
-          git diff --exit-code --quiet src/content/posts/ public/images/ || echo "has_changes=true" >> $GITHUB_OUTPUT
+          git status --porcelain src/content/posts/ public/images/ | grep -q . && echo "has_changes=true" >> $GITHUB_OUTPUT || true
 
       - name: Commit and push
         if: steps.check.outputs.has_changes == 'true'
