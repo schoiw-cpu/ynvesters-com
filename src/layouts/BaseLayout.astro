@@ -112,14 +112,21 @@ const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
       <slot />
     </main>
 
-    <footer style="border-top: 1px solid var(--color-border); padding: 1.5rem; text-align: center; font-size: 0.85rem; color: var(--color-text-muted);">
+    <footer style="border-top: 1px solid var(--color-border); padding: 2rem 1.5rem; font-size: 0.85rem; color: var(--color-text-muted);">
       <div style="max-width: var(--max-width-wide); margin: 0 auto;">
+        <p style="margin: 0 0 0.75rem; font-size:0.8rem; line-height:1.6; color:var(--color-text-muted);">
+          <strong>Disclaimer:</strong> Content on Ynvesters is for informational purposes only and does not constitute professional advice.
+          Product pricing, features, and availability are subject to change. Always verify information directly with the vendor before making purchasing decisions.
+          This site displays advertisements via Google AdSense. Advertisers have no influence over editorial content.
+        </p>
         <p style="margin: 0 0 0.5rem;">
-          © {new Date().getFullYear()} Ynvesters · AI Tools Discovery & Comparison
+          © {new Date().getFullYear()} Ynvesters · AI Tools Discovery &amp; Comparison
         </p>
         <p style="margin: 0;">
-          <a href="/privacy">Privacy Policy</a> ·
           <a href="/about">About</a> ·
+          <a href="/contact">Contact</a> ·
+          <a href="/privacy">Privacy Policy</a> ·
+          <a href="/terms">Terms of Use</a> ·
           <a href="/rss.xml">RSS</a>
         </p>
       </div>
