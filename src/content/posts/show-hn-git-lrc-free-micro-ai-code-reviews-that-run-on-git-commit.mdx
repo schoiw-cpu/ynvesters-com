@@ -1,0 +1,113 @@
+---
+title: "git-lrc Review: Free AI Code Reviews That Trigger on Every Git Commit"
+description: "git-lrc brings micro AI code reviews directly into your git workflow. Learn how it works, what it costs, and whether it's worth adding to your stack."
+pubDate: 2026-06-17
+category: "AI Tools"
+tags: ["AI Code Review", "Developer Tools", "Git", "Open Source", "LLM"]
+author: "AI Editorial Team"
+heroImage: "/images/show-hn-git-lrc-free-micro-ai-code-reviews-that-run-on-git-commit.jpg"
+heroImageAlt: "Laptop displays \"the ai code editor\" website."
+heroImageCredit: "Aerps.com"
+heroImageUrl: "https://unsplash.com/@almoya?utm_source=ynvesters&utm_medium=referral"
+---
+
+You push a commit, move on, and two days later a teammate points out a logic error that was staring you in the face the whole time. The review process — when it happens at all — catches things too late, costs too much social capital to trigger for small changes, and often gets skipped entirely on solo or small-team projects. If that cycle sounds familiar, the premise behind [git-lrc](https://github.com/HexmosTech/git-lrc) is going to resonate.
+
+## What Is git-lrc?
+
+**git-lrc** is a lightweight, open-source tool built by [HexmosTech](https://hexmos.com/) that hooks into your local git workflow to deliver AI-powered code reviews at the moment you commit — not hours later in a pull request queue. The name stands for **git local review commit**, and the philosophy is exactly what it sounds like: keep the feedback loop as tight as possible by moving review to the earliest reasonable checkpoint.
+
+The tool installs as a [git hook](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks), specifically a `post-commit` hook, and sends your diff to a configured large language model (LLM). The review lands in your terminal before you've even switched windows. No dashboard to log into. No pull request required.
+
+## How It Works: The Technical Picture
+
+When you run `git commit`, git-lrc intercepts the action via the post-commit hook mechanism. It extracts the diff of the staged changes, constructs a prompt, and forwards it to an LLM provider of your choice. The model's response is printed directly to your terminal as a structured micro-review.
+
+The current implementation supports routing requests through providers compatible with the OpenAI API interface, which in practice covers a broad range of models — including locally-run models via tools like [Ollama](https://ollama.com/). This is an important detail: if you route through a local model, the effective cost is zero beyond your hardware, and your code never leaves your machine.
+
+The diff-based approach is deliberate. Rather than uploading entire repository context (which balloons token counts and costs), git-lrc reviews only what changed in the last commit. This keeps reviews fast, cheap, and focused — though it also means the model lacks broader codebase context, which is both a limitation and a feature depending on your threat model.
+
+Installation is handled via a shell script, and the configuration is minimal: point it at your LLM endpoint, set an API key if required, and the hook activates globally or per-repository.
+
+## Pricing: What Does It Actually Cost?
+
+The tool itself is **free and open source** under an MIT-style license. The only cost variable is the LLM backend you choose.
+
+| Backend | Cost per commit (est.) | Code leaves machine? | Notes |
+|---|---|---|---|
+| OpenAI GPT-4o | ~$0.002–$0.01 | Yes | Cost scales with diff size |
+| OpenAI GPT-4o-mini | ~$0.0001–$0.001 | Yes | Much cheaper, slightly less precise |
+| Ollama (local Llama 3, Mistral, etc.) | $0 | No | Requires local GPU/CPU resources |
+| Groq (fast inference) | Free tier available | Yes | Rate limits on free tier |
+| Any OpenAI-compatible endpoint | Varies | Depends | Flexible architecture |
+
+For a developer making 20–40 commits a day on a mid-sized project, routing through GPT-4o-mini would likely cost less than a dollar per month. Routing through a local model drops that to zero. The architecture deliberately avoids vendor lock-in, which is one of its more thoughtful design decisions.
+
+## What the Reviews Actually Look Like
+
+Based on the project documentation and design intent, reviews are concise and commit-scoped. You should expect feedback along the lines of:
+
+- Flagging obvious logic errors or off-by-one issues in the changed lines
+- Noting style inconsistencies relative to common conventions
+- Pointing out missing error handling in new code paths
+- Suggesting variable name improvements or spotting shadowed variables
+
+What you won't get is a holistic architectural critique, cross-file dependency analysis, or security audit — those require more context than a single diff provides. git-lrc is not trying to replace a thorough code review; it's trying to catch the embarrassing stuff before it ever reaches one.
+
+This positioning matters. The tool is best understood as a **spell-checker analogue for code logic** — fast, automatic, non-blocking in spirit (the commit already happened), and calibrated for speed over depth.
+
+## The "Post-Commit" Design Choice: Smart or Risky?
+
+One aspect worth scrutinizing is the choice of `post-commit` over `pre-commit`. A pre-commit hook would block the commit if the review flagged problems. Post-commit lets the commit land and then presents feedback.
+
+The HexmosTech team's apparent reasoning is pragmatic: LLM calls introduce latency (typically 1–5 seconds for a fast model, longer for large diffs), and blocking a commit on that latency would frustrate developers into disabling the hook entirely. By firing post-commit, the review becomes informational — you see it, act on it with a follow-up commit if needed, and the hook stays enabled.
+
+The tradeoff is that bad code does get committed. For solo developers or feature branches, that's a non-issue. For teams committing directly to protected branches (which, yes, some still do), it's worth thinking through.
+
+Contrast this with tools like [pre-commit](https://pre-commit.com/), which run synchronous checks before a commit finalizes. git-lrc occupies a different niche: lower friction, higher tolerance for latency, optimized for continuous feedback rather than gatekeeping.
+
+## Comparison: git-lrc vs. Competing AI Code Review Approaches
+
+| Tool | Trigger Point | Cost | Local Option | Context Depth | Setup Friction |
+|---|---|---|---|---|---|
+| **git-lrc** | Post-commit (local) | Free + LLM costs | Yes (Ollama) | Diff only | Low |
+| [CodeRabbit](https://coderabbit.ai/) | Pull Request (CI) | Free tier; paid from $12/mo | No | Full PR context | Medium |
+| [GitHub Copilot Code Review](https://github.com/features/copilot) | Pull Request | $10–19/mo (bundled) | No | PR + repo context | Low (if using Copilot) |
+| [Cursor](https://www.cursor.com/) | In-editor, on demand | Free tier; $20/mo pro | No | File + project context | Medium |
+| pre-commit + custom LLM script | Pre-commit (local) | Free + LLM costs | Yes | Diff only | High (DIY) |
+
+git-lrc's clearest differentiator is the combination of **local execution, zero tool cost, and commit-level timing**. CodeRabbit and GitHub's native review features are more powerful but require a PR to exist and a cloud dependency to function. Cursor is excellent but operates at the editing layer, not the commit layer.
+
+For developers who want something that runs without a PR, without a paid subscription, and without sending code to a third-party platform (assuming local LLM), git-lrc fills a gap that few other tools address.
+
+## Limitations Worth Naming
+
+No tool review is honest without a clear-eyed list of constraints:
+
+- **No codebase context.** The model only sees what changed. A refactor that breaks an implicit contract elsewhere won't be caught.
+- **LLM quality variance.** The review is only as good as the model you point it at. A weak local model will produce weak reviews.
+- **No team integration.** Feedback lives in your terminal. There's no logging, no shared visibility, no workflow for acting on reviews as a team.
+- **Prompt is fixed (currently).** You can't easily customize the review persona, depth, or focus areas without modifying the tool itself.
+- **Not a security scanner.** git-lrc is not a substitute for dedicated SAST tools like [Semgrep](https://semgrep.dev/) or Bandit for Python. It will occasionally spot obvious issues, but that's incidental.
+- **Maturity.** This is an early-stage open source project. The API may change, and community support is limited compared to established alternatives.
+
+## Who Should Actually Use This?
+
+**Good fit:**
+- Solo developers or small teams who rarely do formal code reviews but want a lightweight safety net
+- Developers experimenting with local LLMs who want a practical daily use case
+- Teams with slow PR pipelines who want earlier feedback without adding CI complexity
+- Anyone who finds themselves committing and immediately thinking "wait, was that right?"
+
+**Poor fit:**
+- Security-sensitive codebases where all code must be reviewed before commit
+- Teams that need shared, auditable review records
+- Projects where review feedback needs to integrate with issue trackers or project management tools
+
+## Conclusion
+
+git-lrc is a genuinely useful micro-tool that solves a real, underserved problem: the gap between writing code and getting feedback on it. By anchoring AI review to the commit moment rather than the PR moment, it catches issues earlier and does so in a way that stays out of your way.
+
+The architecture is clean, the cost floor is zero (with a local LLM), and the setup friction is low enough that most developers could have it running in under ten minutes. It won't replace a thoughtful human review, and it's not trying to. But as a first-pass filter that catches logic errors, style slips, and obvious oversights before they compound, it's a practical addition to any developer's local toolchain.
+
+**Recommendation:** If you work solo or on small teams and want earlier feedback without subscribing to another SaaS product, [give git-lrc a try](https://github.com/HexmosTech/git-lrc). Route it through GPT-4o-mini to keep costs negligible, or through Ollama to keep them zero. Run it for two weeks and see how many "oh, good catch" moments it surfaces. That's a low-cost experiment with a real potential upside.
