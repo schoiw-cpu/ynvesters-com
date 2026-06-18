@@ -166,6 +166,20 @@ Neither model is without trade-offs, and marketing pages won't tell you this:
 
 ---
 
+## What the Benchmarks Show
+
+Independent benchmark analysis in 2026 confirms both the similarities and the gaps between these two models.
+
+On **MMLU** (general knowledge), **GPT-4o Mini scores 82.0** in 5-shot evaluation, per [DocsBot's model comparison](https://docsbot.ai/models/compare/gpt-4o-mini/gemini-2-0-flash). Gemini 2.0 Flash is newer by approximately 5 months and targets similar performance levels — making them broadly equivalent on general-purpose reasoning tasks.
+
+The biggest differentiator is **context window**: GPT-4o Mini caps at **128K tokens**, while Gemini 2.0 Flash offers a substantially larger context window and handles video and audio inputs natively — capabilities GPT-4o Mini simply doesn't have, per [Artificial Analysis's 2026 model performance review](https://artificialanalysis.ai/models/gemini-2-0-flash).
+
+On **throughput**, GPT-4o Mini achieves approximately **85.2 tokens per second empirically** — relevant for latency-sensitive applications. Gemini 2.0 Flash emphasizes low latency as a design priority but specific throughput benchmarks vary by deployment region and load.
+
+The pricing story is the sharpest data point: both models cost identically at **$0.15/1M input tokens and $0.60/1M output tokens** at list price. The cost difference comes down to architecture: Flash's native caching reduces effective input costs further in repetitive workflows, which GPT-4o Mini's Batch API partially closes but can't fully match for cache-heavy use cases.
+
+---
+
 ## Conclusion
 
 If you're choosing purely on price for a standard text workload, **Gemini 2.0 Flash wins**. It's cheaper at list price, has a genuine free tier for prototyping, and its context caching can reduce costs further for the right architecture. For anyone building on Google Cloud or needing multimodal capabilities, it's not even a close call.
