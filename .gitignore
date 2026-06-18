@@ -20,3 +20,26 @@ dist/
 
 # 키가 들어있는 원본 텍스트 파일 (실수로 커밋 방지)
 *api 정보.txt
+# === 비밀정보 보호 (Claude 추가) ===
+.env
+.env.*
+!.env.example
+!.env.sample
+!.env.template
+*.pem
+*.p12
+*.pfx
+id_rsa
+id_dsa
+id_ecdsa
+id_ed25519
+service-account*.json
+serviceAccount*.json
+*-service-account*.json
+credentials*.json
+client_secret*.json
+gcp-key*.json
+secrets.toml
+.streamlit/secrets.toml
+*.key
+# === 비밀정보 보호 끝 ===

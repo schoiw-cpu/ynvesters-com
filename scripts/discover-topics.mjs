@@ -108,14 +108,12 @@ async function fetchFromRss(feedUrl) {
 export async function discoverTopics(limit = 5) {
   const existingSlugs = await getExistingSlugs();
 
-  const [hnTopics, ...rssResults] = await Promise.all([
-    fetchFromHN(),
-    ...RSS_FEEDS.map(fetchFromRss),
-  ]);
+  // HN Show HN posts are excluded — they cover obscure micro-tools with near-zero
+  // search volume. RSS feeds cover established products; fallback covers known brands.
+  const rssResults = await Promise.all(RSS_FEEDS.map(fetchFromRss));
+  const allRssTopics = rssResults.flat();
 
-  const allTopics = [...hnTopics, ...rssResults.flat()];
-
-  const deduplicated = allTopics.filter(topic => {
+  const deduplicated = allRssTopics.filter(topic => {
     const slug = slugify(topic.title);
     return !existingSlugs.has(slug);
   });
@@ -126,12 +124,12 @@ export async function discoverTopics(limit = 5) {
     .map(t => ({ ...t, slug: slugify(t.title) }));
 
   if (live.length > 0) {
-    console.log(`[discover] Live topics found: ${live.length}`);
+    console.log(`[discover] RSS topics found: ${live.length}`);
     return live;
   }
 
-  // No live topics — pick from fallback pool, excluding already-published slugs
-  console.log('[discover] No live topics; using fallback pool.');
+  // RSS found nothing new — pick from curated fallback pool
+  console.log('[discover] No RSS topics; using fallback pool.');
   const fallbackCandidates = FALLBACK_TOPICS.filter(t => {
     const slug = slugify(t.title);
     return !existingSlugs.has(slug);
@@ -142,7 +140,6 @@ export async function discoverTopics(limit = 5) {
     return [];
   }
 
-  // Pick one at random from the fallback pool
   const picked = fallbackCandidates[Math.floor(Math.random() * fallbackCandidates.length)];
   console.log(`[discover] Fallback topic selected: "${picked.title}"`);
   return [{ ...picked, slug: slugify(picked.title) }];
