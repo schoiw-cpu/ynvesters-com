@@ -27,6 +27,38 @@ You can say something like: *"Build a task management app with user login, a das
 
 What separates Agent from a standard code generator is that it works within Replit's execution environment. It doesn't just write code — it runs it, catches errors, and iterates automatically. This feedback loop dramatically reduces the back-and-forth that makes AI coding tools frustrating.
 
+### Replit Agent in Practice: A Real Test
+
+We tested this on a free account with the simplest possible prompt.
+
+![Replit AI home screen showing the prompt input field with Create a simple todo app typed, and app type options including Website, Mobile, Design, Slides, and Data Visualization below](/images/replit-ai-home-prompt-input.png)
+
+**First impression:** The interface is minimal to the point of surprise — a single text field asking "what do you want to make?" with category shortcuts below (Website, Mobile, Design, Slides, Data Visualization). No file tree, no editor, no configuration. It looks more like ChatGPT than an IDE. That's intentional.
+
+After submitting the prompt, Replit moved to a building screen within 30–40 seconds. Then the real work began.
+
+![Replit AI building screen showing the agentic process log with parallel agent steps: planning artifact creation, writing OpenAPI spec, running codegen, launching design subagent and backend simultaneously](/images/replit-ai-building-agentic-process.png)
+
+The build log is worth reading — it reveals how Agent actually works. Rather than generating code sequentially, it runs parallel subagents: one writing the OpenAPI spec and running codegen, another building the backend, a third handling the UI. The log showed entries like *"Now launching the design subagent and building the backend in parallel"* and *"Codegen succeeded. Now I'll grep the generated hooks and then simultaneously launch the design subagent and build the backend."* This isn't a single LLM writing files one by one — it's an orchestrated multi-agent system.
+
+Total time: **just over 3 minutes.**
+
+![Replit AI final todo app result showing a working web app called Focus with todo items, filter tabs for All Active Completed, and a feature summary listing add complete delete inline edit filter stats and PostgreSQL persistence](/images/replit-ai-todo-app-final-result.png)
+
+The result wasn't what was asked for — it was more. Replit named the app **"Focus"** and built:
+
+- Add todos (type + Enter)
+- Complete todos (click circle, strikethrough)
+- Delete todos (hover to reveal action)
+- Inline editing (double-click to rename)
+- Filter tabs (All / Active / Completed)
+- Stats header (how many left, how many done)
+- **PostgreSQL persistence** — todos survive page refreshes
+
+A prompt that said "simple" produced an app with a database, a filter system, and inline editing. Then Agent immediately suggested the next step unprompted: *"I can add due dates to todos with a calendar picker and overdue highlighting. Would you like me to do that?"*
+
+**Verdict:** Clean interface, 3-minute build time, output that far exceeded the prompt's scope. The parallel agent architecture is the real story — this is not code generation, it's autonomous app construction.
+
 **Limitation:** Agent works best on greenfield projects. Importing existing complex codebases and asking Agent to extend them can produce inconsistent results, especially with large or poorly documented repositories.
 
 ---
