@@ -48,7 +48,11 @@ For most developers making this comparison, coding performance is the deciding f
 
 **GPT-4o** holds its own on discrete, well-scoped coding tasks. For a function-level request — "write a Python function that parses this JSON and returns a sorted list" — GPT-4o is fast, clean, and reliable. Where it shows strain is in larger agentic loops, where it can lose track of constraints introduced earlier in a long conversation, or default to patterns that are technically correct but miss the architectural intent you described three exchanges ago.
 
-**Verdict on coding:** Claude 3.5 Sonnet for agentic, multi-step, or codebase-level work. GPT-4o for quick, isolated generation tasks where response speed matters.
+**Benchmark data as of June 2026:** On **HumanEval** (standardized coding problem pass rate), Claude Sonnet 4.x scores **97.6%** versus GPT-4o's **90.2%**, per the [HumanEval leaderboard at pricepertoken.com](https://pricepertoken.com/leaderboards/benchmark/humaneval). On the more demanding **SWE-Bench Verified** — which measures resolution of real GitHub issues rather than toy problems — Claude 4 Sonnet reaches **77.2%** versus GPT-5's 74.9%, according to [Local AI Master's model rankings](https://localaimaster.com/models/best-ai-coding-models). The gap between HumanEval (90%+) and SWE-Bench (70–77%) across both models reveals how much harder production-grade coding tasks are compared to isolated problems — worth keeping in mind when reading any benchmark-heavy marketing.
+
+On general knowledge (**MMLU**), GPT-4o scores 88.7 versus Claude's 87.4 — effectively a tie at this level of performance, per [Logic's AI benchmark guide](https://logic.inc/resources/ai-model-benchmarks-guide).
+
+**Verdict on coding:** Claude 3.5 Sonnet (and its successors) for agentic, multi-step, or codebase-level work. GPT-4o for quick, isolated generation tasks where response speed matters.
 
 ---
 
