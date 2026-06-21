@@ -196,9 +196,18 @@ Semrush 분석 기준 가장 높은 트래픽 유입 포맷:
 
 ### 즉시 실행 작업 (이번 주)
 
-- [ ] ynvesters.com을 TAAFT에 "AI 툴 리뷰 사이트"로 제출
 - [ ] The Rundown AI에 Grammarly vs Hemingway 포스트 피칭 이메일 발송
 - [ ] Product Hunt에 Replit AI 리뷰 포스트 제출
+
+### AI 툴 디렉토리 등재 현황 (실시간 확인 완료)
+
+| 디렉토리 | 무료 여부 | 상태 | 비고 |
+|---|---|---|---|
+| TAAFT (theresanaiforthat.com) | ❌ 유료 | 보류 | 최소 $49 일회성, 무료 없음. 월 1,000명 이후 재검토 |
+| Futurepedia | 확인 필요 | 미신청 | 무료 제출 가능한지 확인 후 신청 |
+| aitooltrek.com | 확인 필요 | 미신청 | 백링크 요구 조건 확인 필요 |
+
+> **교훈:** 디렉토리 등재 전 반드시 무료 옵션 유무를 먼저 확인. TAAFT는 무료처럼 보이지만 실제로는 유료 전용.
 
 ---
 
