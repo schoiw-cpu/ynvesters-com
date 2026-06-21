@@ -4,6 +4,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import AdUnit from '../../components/AdUnit.astro';
 import AuthorByline from '../../components/AuthorByline.astro';
 import ArticleSchema from '../../components/ArticleSchema.astro';
+import AffiliateDisclosure from '../../components/AffiliateDisclosure.astro';
 
 export async function getStaticPaths() {
   const posts = await getCollection('posts');
@@ -46,6 +47,8 @@ const canonical = new URL(`/posts/${post.id}`, 'https://ynvesters.com').href;
         )}
       </figure>
     )}
+
+    <AffiliateDisclosure />
 
     <div class="prose">
       <Content />
