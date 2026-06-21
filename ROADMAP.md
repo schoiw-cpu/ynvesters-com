@@ -145,6 +145,63 @@ AI 에이전트 시대에 정보의 권위 있는 소스가 되는 전략.
 
 ---
 
+## 트래픽 확대 전략 (2026-06-21 연구 완료)
+
+> 핵심 인사이트: Google SEO만으로는 느리다. 3개 레버를 동시에 써야 한다.
+
+### 레버 1: 프로그래매틱 SEO (가장 큰 트래픽 레버)
+
+자동 발행 파이프라인이 이미 있으므로 **템플릿만 추가하면** 수백 페이지 자동 생성 가능.
+
+성공 사례: Wise (환율 페이지 수만 개), TripAdvisor (도시별 페이지), TAAFT (AI 툴 5만개 → 9,000만 사용자)
+
+ynvesters.com 적용 계획 (2단계 /tools와 연동):
+
+- `"[Tool A] vs [Tool B] comparison"` — 툴 100개면 조합 4,950개
+- `"Best AI tools for [직업]"` — 직업 50개 × 카테고리 = 500페이지
+- `"[Tool] pricing 2026"` — 툴 100개 = 100페이지
+- `"[Tool] free tier limits"` — 전환율 높은 롱테일
+
+**실행 시점:** 2단계 /tools DB 구축 시 자동 연동
+
+### 레버 2: 무료 배포 채널 (즉시 실행 가능)
+
+| 채널 | 예상 효과 | 난이도 | 실행 방법 |
+|---|---|---|---|
+| **AI 뉴스레터 피칭** | 피처드 시 10,000+ 방문 | 낮음 | 이메일 1통으로 시작 |
+| **Product Hunt 제출** | 하루 1,000~5,000 스파이크 | 낮음 | 리뷰 포스트 제출 |
+| **AI 툴 디렉토리 등재** | 지속적 레퍼럴 트래픽 | 낮음 | TAAFT, Futurepedia 제출 |
+| **Hacker News Show HN** | 바이럴 시 수만 방문 | 중간 | 독창적 데이터 포스트 |
+| **Reddit AI 커뮤니티** | 5.2M 구독자 채널 | 중간 | r/ChatGPT, r/artificial |
+
+**피칭할 뉴스레터 목록:**
+- The Rundown AI (therundown.ai)
+- TLDR AI (tldr.tech/ai)
+- Ben's Bites (bensbites.co)
+- The Neuron (theneurondaily.com)
+
+**피칭 훅:** "Grammarly vs Hemingway: 같은 200단어로 직접 테스트한 결과 (스크린샷)" — 데이터와 스크린샷이 있는 포스트가 피처드될 확률이 높음
+
+### 레버 3: 검색 트래픽이 폭발하는 콘텐츠 포맷
+
+Semrush 분석 기준 가장 높은 트래픽 유입 포맷:
+
+1. `"Best AI tools for [직업/용도]"` — 가장 높은 검색량
+2. `"[Tool A] vs [Tool B]"` — 구매 의도 높음, 어필리에이트 전환율 최고
+3. `"[Tool] pricing 2026"` — 경쟁 낮음, 전환 높음
+4. `"[Tool] alternatives"` — 교체 고민 중인 고의도 유저
+5. `"[Tool] free tier explained"` — 무료 → 유료 전환 유도
+
+현재 자동 발행이 이 포맷을 잘 따르고 있음. 강화 방향: 더 구체적인 직업/용도 세분화.
+
+### 즉시 실행 작업 (이번 주)
+
+- [ ] ynvesters.com을 TAAFT에 "AI 툴 리뷰 사이트"로 제출
+- [ ] The Rundown AI에 Grammarly vs Hemingway 포스트 피칭 이메일 발송
+- [ ] Product Hunt에 Replit AI 리뷰 포스트 제출
+
+---
+
 ## 주간 루틴
 
 ### 매일 (5분)
