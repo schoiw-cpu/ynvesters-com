@@ -1,0 +1,182 @@
+---
+title: "How to Use Brain² by ClickUp: Your Complete Guide to AI-Powered Project Intelligence"
+description: "Learn how to set up and use Brain² by ClickUp to automate tasks, surface insights, and cut through project noise. Real features, real pricing, zero fluff."
+pubDate: 2026-06-25
+category: "AI Tools"
+tags: ["ClickUp", "AI Productivity", "Project Management", "Task Automation", "AI Assistant"]
+author: "AI Editorial Team"
+heroImage: "/images/brain-by-clickup.jpg"
+heroImageAlt: "a person's head with a circuit board in front of it"
+heroImageCredit: "Steve A Johnson"
+heroImageUrl: "https://unsplash.com/@steve_j?utm_source=ynvesters&utm_medium=referral"
+---
+
+You've just come back from a two-day offsite, your ClickUp workspace has 47 new notifications, three tasks have slipped, and someone's already pinging you asking for a status update you haven't had time to write. Sound familiar? That's exactly the problem Brain² by ClickUp was built to solve — not by adding another layer of complexity, but by reading your workspace and doing the thinking for you.
+
+## What Is Brain² by ClickUp?
+
+[Brain² (pronounced "Brain Squared")](https://clickup.com/ai) is ClickUp's second-generation AI layer, embedded directly into the platform rather than bolted on as a chatbot sidebar. Unlike the first iteration of ClickUp AI, which focused mainly on text generation inside task descriptions, Brain² connects to your actual workspace data — tasks, docs, people, comments, goals, and time entries — and lets you query, summarise, automate, and act on all of it in natural language.
+
+It sits inside every paid ClickUp workspace as an add-on and is accessible from the command bar, task fields, Docs, and a dedicated AI assistant panel. The key idea: instead of you having to remember where everything lives, Brain² remembers for you.
+
+---
+
+## Before You Start: Prerequisites
+
+- An active ClickUp account on the **Unlimited, Business, or Enterprise** plan (Brain² is not available on Free Forever)
+- Brain² add-on enabled — as of 2025, it is priced at **$7 per member per month** on top of your base plan ([see official pricing](https://clickup.com/pricing))
+- At minimum, a workspace with a few live projects so the AI has real data to work with
+- (Optional but recommended) ClickUp Docs set up, since Brain² pulls heavily from documentation context
+
+---
+
+## Step 1: Enable Brain² on Your Workspace
+
+1. Navigate to your **Workspace Settings** by clicking your workspace avatar in the bottom-left corner.
+2. Select **ClickUp AI** from the left menu.
+3. Toggle **Brain²** to enabled. You'll see a confirmation screen with the per-member pricing breakdown.
+4. As a workspace admin, you can choose to enable it for **all members** or only specific roles — useful if you want to trial it with a team lead before rolling out broadly.
+5. Click **Save Changes**. Brain² will be active within a few seconds.
+
+Once enabled, a small **AI sparkle icon** appears in the global command bar (Cmd+K / Ctrl+K) and inside the toolbar of every Doc and task description field.
+
+---
+
+## Step 2: Get Oriented — The Three Surfaces Where Brain² Lives
+
+Brain² isn't one modal you open and close. It surfaces in three distinct places, and knowing which to use saves time.
+
+### 2a. The AI Command Bar (Cmd+K → "Ask AI")
+
+This is your Swiss Army knife. Open the command bar, type a natural language question, and Brain² searches across your entire workspace to answer it. Examples that actually work:
+
+- *"What tasks are overdue in the Marketing workspace?"*
+- *"Summarise everything that happened on the Q3 Launch project this week."*
+- *"Who is blocked right now and why?"*
+
+The answers include direct links to the underlying tasks or docs — you're not just getting a summary, you're getting a navigable audit trail.
+
+### 2b. Inside Tasks and Docs (Inline AI)
+
+Highlight any text in a Doc or click the AI button in a task description, and you get inline generation options: summarise, rewrite, expand, make an action item list, change tone, translate. This is the feature most people use first because it's immediately visible.
+
+For task descriptions specifically, there's a **"Fill from context"** option that reads the task's parent list, related docs, and recent comments to draft a description automatically — handy when you're creating tasks from meeting notes.
+
+### 2c. The Dedicated AI Assistant Panel
+
+Available from the right-hand sidebar, this is a persistent chat interface that retains conversation context across multiple questions. Think of it as the place to go when you need to do multi-step reasoning — for example:
+
+1. *"List all tasks assigned to Jamie that are due this sprint."*
+2. *"Which of those depend on a task that isn't complete yet?"*
+3. *"Draft a Slack message to Jamie summarising the blockers."*
+
+Each response builds on the last, and you can copy any output directly into a task or Doc.
+
+---
+
+## Step 3: Set Up AI-Powered Automations
+
+This is where Brain² starts earning its keep beyond basic text generation. ClickUp's automation engine — already one of the most flexible in the market — gains a new trigger type with Brain²: **AI Conditions**.
+
+### How to Create an AI Automation
+
+1. Go to any **Space, Folder, or List** and click **Automations** in the top-right toolbar.
+2. Click **+ Add Automation**.
+3. Under **Trigger**, choose **Task updated** (or any standard trigger).
+4. Under **Condition**, select **AI Condition** and type a plain-English rule, such as: *"The task description mentions a customer name."* or *"The priority has changed and the task is in the critical path."*
+5. Under **Action**, choose what happens: reassign, move, update a custom field, send a notification, create a subtask, post to Slack, etc.
+
+ClickUp processes the AI condition against each task event in real time. This lets you build logic that would normally require custom code — like automatically escalating tasks that Brain² detects contain phrases indicating urgency or risk.
+
+**Practical example automation:**
+> **Trigger:** Comment added → **AI Condition:** Comment contains a question directed at the team → **Action:** Assign to team lead + add "Needs Response" tag
+
+---
+
+## Step 4: Use AI Summaries to Kill Status Meetings
+
+One of the highest-ROI uses of Brain² is generating **project standup summaries** without asking anyone to write them.
+
+1. Open the **AI Assistant Panel** in your project view.
+2. Type: *"Write a standup update for the [Project Name] list covering the last 24 hours."*
+3. Brain² pulls from task status changes, completed tasks, new comments, and overdue items to produce a structured summary.
+4. You can refine it: *"Shorten it to three bullet points."* or *"Add the names of who's responsible for each item."*
+5. Copy the output into Slack, email, or a recurring ClickUp Doc used as a shared standup log.
+
+Teams that use this consistently report cutting their daily sync to under 10 minutes, since everyone reads the AI summary async before the call.
+
+---
+
+## Step 5: Build a Knowledge Base Brain² Can Actually Search
+
+Brain² is only as useful as the data in your workspace. If your Docs are empty or your task descriptions are "do the thing," the AI has nothing to work with. Here's how to feed it properly:
+
+- **Write task descriptions in full sentences.** One-word task names are fine for humans who have context; Brain² needs more to reason about dependencies and blockers.
+- **Use ClickUp Docs for SOPs, meeting notes, and project briefs.** Brain² indexes these and surfaces them when relevant. [ClickUp's own documentation](https://help.clickup.com/hc/en-us/categories/6059718568855-Docs) covers how to structure Docs for best AI retrieval.
+- **Fill in custom fields consistently.** Fields like "Status," "Priority," "Effort," and "Dependencies" give the AI structured signals to reason against, not just unstructured text.
+- **Tag tasks with relevant context.** Brain² can filter and group by tags, so consistent tagging dramatically improves query results.
+
+---
+
+## Step 6: Explore AI-Generated Sub-Tasks and Sprint Planning
+
+When creating a new high-level task, click the **AI sparkle icon** in the subtask area and type a goal description. Brain² will generate a breakdown of logical subtasks, assign estimated effort, and even suggest which team roles should own each one — based on how similar tasks have been handled in your workspace history.
+
+For sprint planning, navigate to your **Sprint List**, open the AI panel, and prompt: *"Based on current velocity and open tasks, what should be in the next sprint?"* Brain² cross-references story points, team capacity (if you've filled in workload data), and historical completion rates to suggest a realistic sprint scope.
+
+This feature is still maturing — it works best with at least 3–4 completed sprints of historical data — but it's already more useful than manually eyeballing a backlog.
+
+---
+
+## Brain² vs. Competing AI Project Management Tools
+
+Here's how Brain² stacks up against the most common alternatives as of mid-2025:
+
+| Feature | Brain² (ClickUp) | Notion AI | Asana AI | Monday AI |
+|---|---|---|---|---|
+| Native workspace data access | ✅ Full | ✅ Full | ✅ Full | ✅ Full |
+| AI automation conditions | ✅ Yes | ❌ No | ⚠️ Limited | ⚠️ Limited |
+| Cross-project AI queries | ✅ Yes | ⚠️ Limited | ❌ No | ❌ No |
+| Inline text generation | ✅ Yes | ✅ Yes | ✅ Yes | ✅ Yes |
+| Sprint planning AI | ✅ Yes | ❌ No | ⚠️ Beta | ❌ No |
+| Pricing (add-on) | $7/member/mo | $10/member/mo | $10/member/mo | Included in some plans |
+| Free tier access | ❌ No | ❌ No | ❌ No | ❌ No |
+
+Sources: [ClickUp Pricing](https://clickup.com/pricing), [Notion AI Pricing](https://www.notion.so/pricing), [Asana AI Features](https://asana.com/product/ai)
+
+---
+
+## Known Limitations You Should Plan Around
+
+Brain² is genuinely useful, but shipping it to your whole team without setting expectations will backfire. Here's what to watch:
+
+**Context window limits.** Very large projects with thousands of tasks can cause Brain² to return incomplete summaries. Break massive projects into focused sub-spaces to keep queries scoped.
+
+**AI conditions in automations are not deterministic.** The same comment might trigger a condition differently on different days depending on how the model interprets it. Test automations on a staging list before deploying to live work.
+
+**No external data ingestion (yet).** Brain² only reads your ClickUp workspace. It can't pull in data from Jira, GitHub issues, or Salesforce — if your workflow spans multiple tools, you'll need to mirror key data into ClickUp via integrations first.
+
+**Accuracy depends on data quality.** This bears repeating: if your workspace is messy, Brain² will confidently summarise the mess. Garbage in, garbage out still applies.
+
+For the latest known issues and feature requests, the [ClickUp Community feedback board](https://clickup.canny.io/) is the most current source.
+
+---
+
+## Tips From Power Users
+
+- **Use the AI panel for end-of-week reports.** Prompt: *"Summarise what my team completed this week and what's at risk for next week."* It takes 20 seconds and covers you before a Friday manager check-in.
+- **Combine AI with ClickUp Goals.** Ask Brain² to assess whether current task progress puts you on track to hit a Goal — it will flag the gap between planned and actual velocity.
+- **Save frequently used AI prompts as Doc templates.** ClickUp doesn't yet have saved AI prompt shortcuts, so keeping your best prompts in a pinned Doc is the current workaround.
+- **Review AI automation logs weekly.** Under Automations → History, you can see every time an AI condition fired and whether it was accurate. Tune your conditions based on false positives.
+
+---
+
+## Conclusion
+
+Brain² by ClickUp is one of the few AI productivity tools that genuinely earns the "connected" label — it reads your actual work, not a sanitised export of it, and the AI automations open up workflow logic that used to require an engineer to build. At $7 per member per month on top of an already-paid ClickUp plan, it's not free, but for teams with more than five people actively using ClickUp, the time saved on status updates and sprint planning alone makes the math straightforward.
+
+**Who should turn it on today:** Teams already living in ClickUp with reasonably structured workspaces, especially those running weekly sprints or managing multiple concurrent projects.
+
+**Who should wait:** Teams with sparse task descriptions, no Docs, or heavily siloed data across multiple tools — clean up your workspace first, or you'll be underwhelmed by the results.
+
+If you're on the fence, enable it for one team lead for a sprint cycle, give them the prompt templates from Step 4, and measure how many fewer status-update requests they send. That single metric will tell you everything you need to know.
