@@ -12,33 +12,42 @@ const RSS_FEEDS = [
   'https://feeds.feedburner.com/venturebeat/SZYF',
 ];
 
-// Fallback pool: curated topics written when live discovery finds nothing new
+// Fallback pool: curated BOFU topics (buyer intent, low competition, high conversion)
+// Updated 2026-06-22 — prioritize "is it worth it?", pricing, alternatives, specific use cases
 const FALLBACK_TOPICS = [
-  { title: 'Claude 3.5 Sonnet vs GPT-4o: Which AI Model Wins in 2026?', url: 'https://anthropic.com', source: 'fallback' },
-  { title: 'Perplexity AI Pro vs ChatGPT Plus: Which Search AI is Worth the Money?', url: 'https://perplexity.ai', source: 'fallback' },
-  { title: 'Best AI Writing Tools for Bloggers in 2026', url: 'https://ynvesters.com', source: 'fallback' },
-  { title: 'How to Use Claude API for Automated Content: A Developer Guide', url: 'https://anthropic.com', source: 'fallback' },
-  { title: 'Suno AI vs Udio: Best AI Music Generator Compared', url: 'https://suno.com', source: 'fallback' },
-  { title: 'Windsurf vs Cursor vs GitHub Copilot: AI Code Editor Showdown 2026', url: 'https://codeium.com', source: 'fallback' },
-  { title: 'Gemini 2.0 Flash vs GPT-4o Mini: Best Budget AI Model?', url: 'https://deepmind.google', source: 'fallback' },
-  { title: 'Descript vs Adobe Podcast: Best AI Audio Editor for Creators', url: 'https://descript.com', source: 'fallback' },
-  { title: 'Luma Dream Machine vs Sora: AI Video Generation in 2026', url: 'https://lumalabs.ai', source: 'fallback' },
-  { title: 'Figma AI vs Framer AI: Best AI Design Tool for Non-Designers', url: 'https://figma.com', source: 'fallback' },
-  { title: 'Krea AI vs Magnific: Best AI Image Upscaling Tool', url: 'https://krea.ai', source: 'fallback' },
-  { title: 'Linear vs Jira with AI: Which Project Management Tool is Smarter?', url: 'https://linear.app', source: 'fallback' },
-  { title: 'ElevenLabs vs PlayHT: Best AI Voice Cloning Tool Compared', url: 'https://elevenlabs.io', source: 'fallback' },
-  { title: 'Airtable AI vs Notion AI: Best AI Database for Teams', url: 'https://airtable.com', source: 'fallback' },
-  { title: 'Superhuman AI vs HEY: Best AI Email Client in 2026', url: 'https://superhuman.com', source: 'fallback' },
-  { title: 'Synthesia vs HeyGen: Best AI Avatar Video Platform', url: 'https://synthesia.io', source: 'fallback' },
-  { title: 'Jasper AI vs Copy.ai vs Writesonic: Best AI Copywriting Tool', url: 'https://jasper.ai', source: 'fallback' },
-  { title: 'Claude Artifacts vs ChatGPT Canvas: Best AI Code Sandbox?', url: 'https://anthropic.com', source: 'fallback' },
-  { title: 'Opus Clip vs Descript: Best AI Short Video Creator for YouTube', url: 'https://opus.pro', source: 'fallback' },
-  { title: 'Make vs Zapier in 2026: Which AI Automation Platform Wins?', url: 'https://make.com', source: 'fallback' },
-  { title: 'Ideogram 2.0 vs Midjourney v7: Best AI Image Generator', url: 'https://ideogram.ai', source: 'fallback' },
-  { title: 'Notion AI vs Obsidian AI: Best AI Note-Taking App for Researchers', url: 'https://notion.so', source: 'fallback' },
-  { title: 'Pika Labs vs Kling AI: Best AI Video Tool for Social Media', url: 'https://pika.art', source: 'fallback' },
-  { title: 'Arc Browser AI vs Brave AI: Smartest AI-Powered Browser', url: 'https://arc.net', source: 'fallback' },
-  { title: 'Glean vs Microsoft Copilot for Enterprise: Best Workplace AI', url: 'https://glean.com', source: 'fallback' },
+  // High-conversion "worth it?" and pricing BOFU
+  { title: 'ChatGPT Plus vs Claude Pro: Which $20/Month AI Subscription Is Worth It in 2026?', url: 'https://openai.com', source: 'fallback' },
+  { title: 'Grammarly Premium Review 2026: Is $30/Month Worth It for Bloggers?', url: 'https://grammarly.com', source: 'fallback' },
+  { title: 'Notion AI Pricing Explained: Is the $10/Month Add-On Worth It?', url: 'https://notion.so', source: 'fallback' },
+  { title: 'Cursor AI Pro vs Free: Is the $20/Month Plan Worth It for Solo Developers?', url: 'https://cursor.sh', source: 'fallback' },
+  { title: 'Perplexity AI Free vs Pro: What Do You Actually Get for $20/Month?', url: 'https://perplexity.ai', source: 'fallback' },
+  { title: 'Jasper AI Pricing 2026: Is There a Cheaper Alternative That Does the Same Thing?', url: 'https://jasper.ai', source: 'fallback' },
+  { title: 'ElevenLabs Free Plan Limits 2026: Exactly How Many Characters Per Month?', url: 'https://elevenlabs.io', source: 'fallback' },
+  { title: 'Midjourney vs Adobe Firefly: Which AI Image Tool Is Worth Paying For in 2026?', url: 'https://midjourney.com', source: 'fallback' },
+  { title: 'Opus Clip Review 2026: Is AI Video Repurposing Worth $29/Month?', url: 'https://opus.pro', source: 'fallback' },
+  { title: 'HeyGen Free Trial Review: What Is Actually Included Before You Pay?', url: 'https://heygen.com', source: 'fallback' },
+  // Head-to-heads not yet covered
+  { title: 'Make vs Zapier vs n8n: Which AI Automation Platform Wins in 2026?', url: 'https://make.com', source: 'fallback' },
+  { title: 'Copy.ai vs Writesonic: Which Is Better for Long-Form Blog Posts in 2026?', url: 'https://copy.ai', source: 'fallback' },
+  { title: 'Superhuman AI vs HEY Email: Which AI Email Client Is Actually Faster?', url: 'https://superhuman.com', source: 'fallback' },
+  { title: 'Notion AI vs Obsidian with AI Plugins: Best AI Note-Taking App for Researchers?', url: 'https://notion.so', source: 'fallback' },
+  { title: 'Pika Labs vs Kling AI vs Luma: Best AI Video Tool for Social Media in 2026?', url: 'https://pika.art', source: 'fallback' },
+  { title: 'Claude Artifacts vs ChatGPT Canvas: Which AI Coding Sandbox Is Better?', url: 'https://anthropic.com', source: 'fallback' },
+  { title: 'Glean vs Microsoft Copilot for Enterprise: Best Workplace AI Search in 2026?', url: 'https://glean.com', source: 'fallback' },
+  { title: 'Arc Browser AI vs Brave AI vs Chrome AI: Which Browser Uses AI Best in 2026?', url: 'https://arc.net', source: 'fallback' },
+  { title: 'Otter.ai vs Fireflies vs Notion AI: Best AI Meeting Notetaker Compared 2026', url: 'https://otter.ai', source: 'fallback' },
+  { title: 'GitHub Copilot vs Amazon Q Developer: Best AI Coding Assistant for AWS Users?', url: 'https://github.com', source: 'fallback' },
+  // Niche/use-case BOFU (low competition)
+  { title: 'Best AI Tools for Freelancers in 2026: Tested and Ranked by Category', url: 'https://ynvesters.com', source: 'fallback' },
+  { title: 'Best AI Writing Tools for Non-Native English Speakers in 2026', url: 'https://ynvesters.com', source: 'fallback' },
+  { title: 'Best AI Tools for YouTube Creators in 2026: Script, Edit, and Repurpose', url: 'https://ynvesters.com', source: 'fallback' },
+  { title: 'Best AI Coding Assistants for Beginners 2026: No Experience Required', url: 'https://ynvesters.com', source: 'fallback' },
+  { title: 'Best AI Tools for Solo Founders in 2026: Run a Business Without a Team', url: 'https://ynvesters.com', source: 'fallback' },
+  { title: 'Claude API Pricing Explained: How Much Does It Cost to Build an AI App in 2026?', url: 'https://anthropic.com', source: 'fallback' },
+  { title: 'OpenAI API vs Claude API vs Gemini API: Cheapest LLM for Production Apps in 2026', url: 'https://openai.com', source: 'fallback' },
+  { title: 'Stable Diffusion vs Midjourney vs DALL-E 3: Which AI Art Tool for Commercial Use?', url: 'https://stability.ai', source: 'fallback' },
+  { title: 'Descript vs Riverside FM vs Squadcast: Best AI Podcast Recording Tool 2026', url: 'https://descript.com', source: 'fallback' },
+  { title: 'Gamma vs Beautiful.ai vs Tome: Best AI Presentation Tool Compared 2026', url: 'https://gamma.app', source: 'fallback' },
 ];
 
 async function getExistingSlugs() {
