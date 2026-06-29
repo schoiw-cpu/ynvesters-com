@@ -168,7 +168,7 @@ The results surprised me — sharing at ynvesters.com/posts/[slug]
 |---|---|---|---|
 | ElevenLabs | 22% 반복 12개월 | ✅ **승인 완료** | 포스트 2개 링크 삽입 완료 |
 | Writesonic | 30% 반복 | ⏳ 승인 대기 | 이메일 확인 후 링크 삽입 |
-| Grammarly | $20/전환 | ❌ 미신청 | grammarly.com/affiliates 신청 |
+| Grammarly | $20/전환 | ❌ 거절 (트래픽 부족) | 월 1,000명 달성 후 재신청 |
 | Jasper | 25% 반복 | ❌ 미신청 | jasper.ai/affiliates (다음 세션) |
 | Canva | — | ❌ 마감 | 재개 시 신청 |
 | Notion | — | ❌ 마감 | 재개 시 신청 |
@@ -270,9 +270,9 @@ ynvesters.com/tools 를 AI 툴 검색·비교 플랫폼으로 전환.
 
 ### 🔴 이번 주 (즉시)
 
-- [ ] **Grammarly 어필리에이트 신청** → grammarly.com/affiliates
-- [ ] **r/SideProject에 ynvesters.com 소개 글 작성** (링크 포함 가능한 유일한 서브레딧)
-- [ ] **The Rundown AI 피칭 이메일 발송** (Grammarly vs Hemingway 포스트 훅)
+- [x] ~~Grammarly 어필리에이트 신청~~ → **거절됨 (트래픽 부족), 월 1,000명 달성 후 재신청**
+- [x] **r/SideProject에 ynvesters.com 소개 글 작성** ✅ 완료 (2026-06-22)
+- [x] **The Rundown AI 피칭 이메일 발송** ✅ 완료 (2026-06-22, elevenlabs-vs-playht 포스트 훅)
 - [ ] **Writesonic 승인 이메일 확인** → 링크 삽입 요청 (Claude에게)
 
 ### 🟡 이번 달 (2주 내)
