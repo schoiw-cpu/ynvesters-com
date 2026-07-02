@@ -21,7 +21,7 @@ const { title, description, pubDate, updatedDate, heroImage, heroImageAlt, heroI
 const canonical = new URL(`/posts/${post.id}`, 'https://ynvesters.com').href;
 ---
 
-<BaseLayout {title} {description} image={heroImage} {pubDate} {author}>
+<BaseLayout {title} {description} image={heroImage} {pubDate} {author} noIndex={post.data.noindex}>
   <ArticleSchema
     {title} {description} {pubDate} {updatedDate} {heroImage} {author}
     url={canonical}

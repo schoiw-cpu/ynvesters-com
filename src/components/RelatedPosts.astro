@@ -30,12 +30,18 @@ function topicsFor(text: string): Set<string> {
   const t = text.toLowerCase();
   const found = new Set<string>();
   for (const [topic, keys] of Object.entries(TOPICS)) {
-    if (keys.some((k) => t.includes(k))) found.add(topic);
+    // Word-boundary match: bare includes() classified "Magic Studio" as audio
+    // because "studio" contains "udio".
+    if (keys.some((k) => new RegExp(`\\b${k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}`).test(t))) {
+      found.add(topic);
+    }
   }
   return found;
 }
 
-const all = await getCollection('posts');
+// noindexed (soft-retired) posts must not receive internal links —
+// the whole point is concentrating crawl equity on quality pages.
+const all = (await getCollection('posts')).filter((p) => !p.data.noindex);
 
 const current = all.find((p) => p.id === currentId);
 const currentText = `${current?.data.title ?? ''} ${(current?.data.tags ?? []).join(' ')} ${currentId}`;

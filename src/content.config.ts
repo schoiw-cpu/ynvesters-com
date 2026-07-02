@@ -17,6 +17,9 @@ const posts = defineCollection({
     author: z.string().default('AI Editorial Team'),
     wordCount: z.number().optional(),
     featured: z.boolean().default(false),
+    // Soft-retire low-value posts (zero search demand, no affiliate fit) without
+    // deleting them: noindexed, hidden from listings and related links.
+    noindex: z.boolean().default(false),
   }),
 });
 

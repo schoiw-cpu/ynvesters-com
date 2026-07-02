@@ -2,7 +2,7 @@ import rss from '@astrojs/rss';
 import { getCollection } from 'astro:content';
 
 export async function GET(context) {
-  const posts = await getCollection('posts');
+  const posts = (await getCollection('posts')).filter(p => !p.data.noindex);
   return rss({
     title: 'Ynvesters – AI Tools Discovery & Comparison',
     description: 'Daily reviews, comparisons, and guides on the latest AI tools.',

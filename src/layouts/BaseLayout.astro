@@ -30,7 +30,7 @@ const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl} />
-    {noIndex && <meta name="robots" content="noindex,nofollow" />}
+    {noIndex && <meta name="robots" content="noindex,follow" />}
 
     <!-- Open Graph -->
     <meta property="og:type" content={pubDate ? 'article' : 'website'} />
