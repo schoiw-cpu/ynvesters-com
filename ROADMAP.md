@@ -136,8 +136,10 @@ $400~700/월 (현실)       $1,200~1,800/월           $3,000/월
 
 ### 대기 중
 - [ ] r/SideProject — 도메인 신뢰도 쌓인 후 재시도
-- [ ] TLDR AI, Ben's Bites 피칭
+- [ ] Ben's Bites — 이메일 피칭 아님! news.bensbites.com에 계정 만들어 포스트 제출 (커뮤니티 투표로 뉴스레터 선정)
+- [x] ~~TLDR AI 피칭~~ — 무료 제출 채널 없음 확인 (2026-07-02). 유료 광고만 가능 → 트래픽 생긴 후 재검토
 - [ ] The Rundown AI 답장 여부 확인
+- [ ] Gamma 어필리에이트 직접 신청: gammaapp.partnerstack.com/?group=affiliates (마켓플레이스 우회 직접 링크, 심사 5~10일)
 
 ---
 
