@@ -136,10 +136,14 @@ $400~700/월 (현실)       $1,200~1,800/월           $3,000/월
 
 ### 대기 중
 - [ ] r/SideProject — 도메인 신뢰도 쌓인 후 재시도
-- [ ] Ben's Bites — 이메일 피칭 아님! news.bensbites.com에 계정 만들어 포스트 제출 (커뮤니티 투표로 뉴스레터 선정)
+- [x] ~~Ben's Bites 제출~~ — news.bensbites.com 제출 플랫폼 폐쇄 확인 (2026-07-02, 본체 Substack으로 리디렉션). 무료 노출 채널 없음
 - [x] ~~TLDR AI 피칭~~ — 무료 제출 채널 없음 확인 (2026-07-02). 유료 광고만 가능 → 트래픽 생긴 후 재검토
 - [ ] The Rundown AI 답장 여부 확인
-- [ ] Gamma 어필리에이트 직접 신청: gammaapp.partnerstack.com/?group=affiliates (마켓플레이스 우회 직접 링크, 심사 5~10일)
+- [x] Gamma 어필리에이트 신청 완료 — 승인 대기 중 (2026-07-02 확인)
+
+> **뉴스레터 피칭 교훈 (2026-07-02):** 대형 AI 뉴스레터(TLDR, Ben's Bites)는 무료 제출 채널이 모두 사라짐.
+> 남은 무료 배포 채널 = Reddit(카르마 빌딩 후 r/SideProject), 소형 뉴스레터 직접 피칭, GEO(AI 인용).
+> 배포 우선순위를 커뮤니티+GEO로 재편.
 
 ---
 
