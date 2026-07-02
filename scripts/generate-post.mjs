@@ -25,6 +25,14 @@ Your writing is clear, specific, and evidence-based. You cite sources inline (li
 You never make up statistics. You always include real pricing, real features, and real limitations.
 You write for busy professionals who want actionable information, not marketing copy.
 
+FACT DISCIPLINE — violations make the article worthless:
+- Never invent specific numbers (prices, benchmark scores, user counts, dates). If you are not
+  confident a number is real, describe it qualitatively and tell readers to check the official
+  pricing page for current figures.
+- Never fabricate quotes, case studies, or "studies show" claims.
+- When comparing tools, only state differences you are confident about; frame uncertain points
+  as "verify on their site" rather than guessing.
+
 INTRODUCTION STYLE — this is critical:
 - Open with 1–2 sentences that name a specific, relatable pain point the reader has likely felt personally.
   Good: "If you've ever merged a PR only to realize the 'working' code was just verbose AI filler, you know the frustration."
@@ -38,8 +46,18 @@ INTRODUCTION STYLE — this is critical:
 Output must be valid MDX (Markdown with JSX support) — no raw HTML tags outside of MDX components.
 CRITICAL: Output ONLY the raw MDX content. Do NOT wrap in code fences (\`\`\`mdx or \`\`\`). Start directly with the --- frontmatter delimiter.`;
 
-function pickTemplate() {
-  return STYLE_TEMPLATES[Math.floor(Math.random() * STYLE_TEMPLATES.length)];
+// Templates honest for a product announced <48h ago (no hands-on access yet).
+// "in-depth review" or "how-to tutorial" would force fabricated experience.
+const GROUNDED_TEMPLATES = [
+  'news analysis',
+  'Q&A format',
+  'pricing breakdown',
+  'comparison guide (vs alternatives)',
+];
+
+function pickTemplate(grounded = false) {
+  const pool = grounded ? GROUNDED_TEMPLATES : STYLE_TEMPLATES;
+  return pool[Math.floor(Math.random() * pool.length)];
 }
 
 function randomWordCount() {
@@ -48,16 +66,38 @@ function randomWordCount() {
 }
 
 export async function generatePost(topic, imageData = null, dryRun = false) {
-  const template = pickTemplate();
+  const template = pickTemplate(Boolean(topic.grounding));
   const targetWords = randomWordCount();
 
   const frontmatterNote = imageData
     ? `Hero image: path="${imageData.localPath}", alt="${imageData.alt}", credit="${imageData.credit}", creditUrl="${imageData.creditUrl}"`
     : 'No hero image available.';
 
+  // Trend-radar topics cover just-announced products that are NOT in training
+  // data — without grounding, the model would confidently invent specs/pricing.
+  const groundingBlock = topic.grounding
+    ? `
+CRITICAL — THIS COVERS A JUST-ANNOUNCED PRODUCT (announced within the last 48 hours).
+Your training data does NOT include it. Anti-hallucination rules for this article:
+1. Every specific factual claim (features, specs, pricing, availability, dates) must come
+   from the SOURCE EXCERPT below. Do not use "remembered" details about this product.
+2. If a detail readers will want (e.g., pricing) is NOT in the excerpt, explicitly write that
+   it has not been announced yet — that honesty is valuable content, not a weakness.
+3. Attribute facts naturally: "according to the announcement", "the company says".
+4. Link to the source announcement (${topic.url}) early in the article.
+5. General background about the COMPANY or the CATEGORY from your knowledge is fine —
+   just not unverified specifics about this new product.
+
+SOURCE EXCERPT (announcement: "${topic.sourceTitle ?? topic.title}"):
+"""
+${topic.grounding}
+"""
+`
+    : '';
+
   const prompt = `Write a ${template} article about: "${topic.title}"
 Source URL (use as reference, do not reproduce verbatim): ${topic.url}
-
+${groundingBlock}
 Style: ${template}
 Target length: ~${targetWords} words
 ${frontmatterNote}

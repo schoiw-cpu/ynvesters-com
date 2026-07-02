@@ -2,6 +2,7 @@ import Parser from 'rss-parser';
 import { readdir } from 'fs/promises';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { detectBigTrend } from './trend-radar.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const POSTS_DIR = path.join(__dirname, '../src/content/posts');
@@ -116,6 +117,21 @@ async function fetchFromRss(feedUrl) {
 
 export async function discoverTopics(limit = 5) {
   const existingSlugs = await getExistingSlugs();
+
+  // Priority 0 — trend radar: on days a frontier lab ships something big (or an
+  // AI story crosses 300+ HN points), ride the wave with a same-day BOFU
+  // companion post. Readers who saw the news search "X pricing / worth it?"
+  // within hours, and big media doesn't write those. The topic carries a
+  // `grounding` excerpt from the announcement so the generator can't hallucinate
+  // specs for a product outside its training data.
+  const trend = await detectBigTrend();
+  if (trend) {
+    const slug = slugify(trend.title);
+    if (!existingSlugs.has(slug)) {
+      return [{ ...trend, slug }];
+    }
+    console.log('[discover] Trend already covered; falling through to BOFU pool.');
+  }
 
   // Curated BOFU pool takes priority: buyer-intent topics with search volume and
   // affiliate fit. RSS news topics (obscure launches, research projects) were getting
