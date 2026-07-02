@@ -117,8 +117,22 @@ async function fetchFromRss(feedUrl) {
 export async function discoverTopics(limit = 5) {
   const existingSlugs = await getExistingSlugs();
 
-  // HN Show HN posts are excluded — they cover obscure micro-tools with near-zero
-  // search volume. RSS feeds cover established products; fallback covers known brands.
+  // Curated BOFU pool takes priority: buyer-intent topics with search volume and
+  // affiliate fit. RSS news topics (obscure launches, research projects) were getting
+  // published for weeks with near-zero search volume and no monetization path —
+  // RSS is now only a last resort when the curated pool runs dry.
+  const fallbackCandidates = FALLBACK_TOPICS.filter(t => {
+    const slug = slugify(t.title);
+    return !existingSlugs.has(slug);
+  });
+
+  if (fallbackCandidates.length > 0) {
+    const picked = fallbackCandidates[Math.floor(Math.random() * fallbackCandidates.length)];
+    console.log(`[discover] BOFU topic selected (${fallbackCandidates.length} left in pool): "${picked.title}"`);
+    return [{ ...picked, slug: slugify(picked.title) }];
+  }
+
+  console.log('[discover] BOFU pool exhausted; falling back to RSS.');
   const rssResults = await Promise.all(RSS_FEEDS.map(fetchFromRss));
   const allRssTopics = rssResults.flat();
 
@@ -132,26 +146,13 @@ export async function discoverTopics(limit = 5) {
     .slice(0, limit)
     .map(t => ({ ...t, slug: slugify(t.title) }));
 
-  if (live.length > 0) {
-    console.log(`[discover] RSS topics found: ${live.length}`);
-    return live;
-  }
-
-  // RSS found nothing new — pick from curated fallback pool
-  console.log('[discover] No RSS topics; using fallback pool.');
-  const fallbackCandidates = FALLBACK_TOPICS.filter(t => {
-    const slug = slugify(t.title);
-    return !existingSlugs.has(slug);
-  });
-
-  if (fallbackCandidates.length === 0) {
-    console.log('[discover] Fallback pool exhausted.');
+  if (live.length === 0) {
+    console.log('[discover] No topics found anywhere.');
     return [];
   }
 
-  const picked = fallbackCandidates[Math.floor(Math.random() * fallbackCandidates.length)];
-  console.log(`[discover] Fallback topic selected: "${picked.title}"`);
-  return [{ ...picked, slug: slugify(picked.title) }];
+  console.log(`[discover] RSS topics found: ${live.length}`);
+  return live;
 }
 
 // CLI usage: node scripts/discover-topics.mjs

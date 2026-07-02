@@ -90,10 +90,14 @@
 | 툴 | 커미션 | 상태 | 신청 방법 |
 |---|---|---|---|
 | ElevenLabs | 22% 반복 12개월 | ✅ 승인, 링크 삽입 완료 | — |
-| Copy.ai | 45% year-1, 60일 | ❌ **즉시 신청 필요** | copy.ai/affiliates |
-| Writesonic | 미검증 | ⏳ 신청 완료, 대기 중 | — |
+| Copy.ai | 45% year-1, 60일 | ⏳ **워크플로우 3개 필요** | Copy.ai에서 워크플로우 3개 직접 빌드 후 신청 — 월 트래픽 3,000명 달성 후 진행 |
+| Writesonic | 20% × 12개월 | ✅ 승인, 링크 삽입 완료 | 링크: writesonic.com?fp_ref=a3xri6, PayPal 설정 완료 |
+| Murf AI | 20% × 24개월, 90일 쿠키 | ⏳ 신청 완료, 대기 중 (PartnerStack) | — |
+| Gamma | 30% year-1 | ⏳ PartnerStack 네트워크 승인 후 신청 예정 | Gamma 리뷰 포스트 있음 — 승인 즉시 링크 삽입 |
+| Descript | $25/전환 | ⏳ PartnerStack 네트워크 승인 후 신청 예정 | Trending 프로그램 |
+| AdCreative.ai | 30% + $2,000 보너스 | ⏳ PartnerStack 네트워크 승인 후 신청 예정 | AI 광고 툴 |
 | Grammarly | $20/전환 | ❌ 거절 (트래픽 부족) | 1,000명 후 재신청 |
-| Jasper | 미검증 | ❌ 미신청 | jasper.ai/affiliates |
+| Jasper | 25% 12개월 | ❌ 개인 불가 | Solution Partner만 가능 (에이전시 전용), 개인 블로거 신청 불가 |
 
 ---
 
