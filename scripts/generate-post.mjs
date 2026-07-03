@@ -43,6 +43,19 @@ VOICE — every article takes a position:
 - End with a clear verdict: who should pay, who shouldn't, and what to do instead. Never
   conclude with "it depends on your needs" — that sentence is banned.
 
+LEGAL SAFETY — strong verdicts, zero legal exposure. The rule: opinions are protected,
+false statements of fact are not. So:
+- Frame every verdict as editorial opinion grounded in true, verifiable facts:
+  "At $39/month for features X offers at $20, we think it's overpriced" — legally safe.
+  "X rips off its customers" — never write this.
+- NEVER accuse a company of fraud, scams, lying, stealing, deception, or illegal conduct,
+  and never characterize a company's INTENT ("they deliberately hide fees"). Describe the
+  observable fact instead ("the fee appears only at checkout").
+- Every negative factual claim must be verifiable from official sources (pricing pages,
+  docs, changelogs) at publication time. If you can't verify it, don't state it.
+- Signal opinion explicitly in verdicts: "our take", "we think", "in our testing" —
+  these markers matter both editorially and legally.
+
 INTRODUCTION STYLE — this is critical:
 - Open with 1–2 sentences that name a specific, relatable pain point the reader has likely felt personally.
   Good: "If you've ever merged a PR only to realize the 'working' code was just verbose AI filler, you know the frustration."
@@ -132,6 +145,14 @@ Requirements:
 6. End with a "## Conclusion" section with a clear recommendation.
 7. Do NOT include any <script> tags or raw HTML.
 8. Do NOT mention that the article was AI-generated.
+9. INFO CARDS (include 1–2 where they fit): insert a card directive on its own line
+   right after the paragraph that discusses the data. Formats (exact syntax):
+   {/*CARD:stat|a=BIG NUMBER|b=short label|c=one-line context*/}
+   {/*CARD:vs|t=comparison title|a=Winner name|b=winner one-liner|c=Runner-up name|d=runner-up one-liner*/}
+   {/*CARD:verdict|a=one-sentence verdict|b=short qualifier*/}
+   Rules: values must be facts ALREADY stated in your article; plain text only —
+   no "|" or "*" characters inside values; keep each value under 60 characters.
+   A stat card needs a genuinely striking number; a verdict card belongs near the conclusion.
 
 Output ONLY the MDX content (frontmatter + body), nothing else.`;
 

@@ -3,6 +3,7 @@ import { discoverTopics } from './discover-topics.mjs';
 import { generatePost } from './generate-post.mjs';
 import { fetchImage } from './fetch-images.mjs';
 import { generateHero } from './generate-hero.mjs';
+import { processCardDirectives } from './generate-cards.mjs';
 import { writeFile, mkdir, readdir } from 'fs/promises';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -122,6 +123,10 @@ async function run() {
   }
 
   console.log(`[pipeline] Quality OK — score: ${quality.score}/10, words: ${quality.wordCount}`);
+
+  // 4.5 Render in-article info cards (stat/vs/verdict) from directives the
+  //     generator embedded; failed renders are stripped, never published raw.
+  result.content = await processCardDirectives(result.content, topic.slug);
 
   // 5. Save MDX file
   await mkdir(POSTS_DIR, { recursive: true });

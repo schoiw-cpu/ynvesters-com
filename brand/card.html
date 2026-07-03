@@ -1,0 +1,81 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{width:1080px;height:608px;overflow:hidden}
+  body{font-family:'Inter','Helvetica Neue',-apple-system,'Segoe UI',sans-serif}
+  .card{width:1080px;height:608px;position:relative;overflow:hidden;display:none;
+       background:linear-gradient(150deg,#101f38,#0b1830 55%,#081222)}
+  .grid{position:absolute;inset:0;
+       background-image:linear-gradient(#ffffff0a 1px,transparent 1px),
+                        linear-gradient(90deg,#ffffff0a 1px,transparent 1px);
+       background-size:60px 60px}
+  .brand{position:absolute;bottom:26px;right:36px;display:flex;align-items:center;gap:10px}
+  .brand .dot{width:12px;height:12px;border-radius:3px;background:#fbbf24}
+  .brand .t{color:#94a3b8;font-size:22px;font-weight:800;letter-spacing:.5px}
+
+  /* ── stat: big number ── */
+  #stat .in{position:absolute;inset:0;display:flex;flex-direction:column;
+       align-items:center;justify-content:center;gap:18px;padding:0 80px;text-align:center}
+  #stat .num{color:#fbbf24;font-size:160px;font-weight:800;letter-spacing:-4px;line-height:1}
+  #stat .lb{color:#f1f5f9;font-size:40px;font-weight:700}
+  #stat .sub{color:#94a3b8;font-size:26px;font-weight:500}
+
+  /* ── vs: head-to-head, left = winner ── */
+  #vs .ttl{position:absolute;top:48px;left:0;right:0;text-align:center;
+       color:#f1f5f9;font-size:42px;font-weight:800;padding:0 60px}
+  #vs .cols{position:absolute;top:140px;left:56px;right:56px;bottom:76px;display:flex;gap:26px}
+  #vs .col{flex:1;border-radius:22px;padding:36px 30px;display:flex;flex-direction:column;
+       align-items:center;justify-content:center;gap:18px;text-align:center}
+  #vs .col.l{background:#fbbf241a;border:3px solid #fbbf24}
+  #vs .col.r{background:#ffffff0d;border:3px dashed #ffffff40}
+  #vs .h{font-size:40px;font-weight:800;color:#fbbf24}
+  #vs .col.r .h{color:#cbd5e1}
+  #vs .d{font-size:27px;font-weight:600;color:#e2e8f0;line-height:1.5}
+
+  /* ── verdict: the editorial call ── */
+  #verdict .in{position:absolute;inset:0;display:flex;flex-direction:column;
+       align-items:center;justify-content:center;gap:28px;padding:0 90px;text-align:center}
+  #verdict .chip{background:#fbbf24;color:#0b1830;font-size:26px;font-weight:800;
+       letter-spacing:2px;padding:10px 30px;border-radius:999px}
+  #verdict .t{color:#f1f5f9;font-size:52px;font-weight:800;line-height:1.3;letter-spacing:-1px}
+  #verdict .s{color:#94a3b8;font-size:27px;font-weight:600}
+</style></head><body>
+  <div class="card" id="stat"><div class="grid"></div><div class="in">
+    <div class="num"></div><div class="lb"></div><div class="sub"></div>
+  </div><div class="brand"><div class="dot"></div><div class="t">Ynvesters</div></div></div>
+
+  <div class="card" id="vs"><div class="grid"></div>
+    <div class="ttl"></div>
+    <div class="cols">
+      <div class="col l"><div class="h"></div><div class="d"></div></div>
+      <div class="col r"><div class="h"></div><div class="d"></div></div>
+    </div><div class="brand"><div class="dot"></div><div class="t">Ynvesters</div></div></div>
+
+  <div class="card" id="verdict"><div class="grid"></div><div class="in">
+    <div class="chip">VERDICT</div><div class="t"></div><div class="s"></div>
+  </div><div class="brand"><div class="dot"></div><div class="t">Ynvesters</div></div></div>
+
+<script>
+  const q=new URLSearchParams(location.search), g=k=>q.get(k)||'';
+  const type=g('type')||'stat';
+  const el=document.getElementById(type); el.style.display='block';
+  if(type==='stat'){
+    el.querySelector('.num').textContent=g('a');
+    el.querySelector('.lb').textContent=g('b');
+    el.querySelector('.sub').textContent=g('c');
+    if(g('a').length>7) el.querySelector('.num').style.fontSize='110px';
+  }
+  if(type==='vs'){
+    el.querySelector('.ttl').textContent=g('t');
+    const c=el.querySelectorAll('.col');
+    c[0].querySelector('.h').textContent=g('a');
+    c[0].querySelector('.d').textContent=g('b');
+    c[1].querySelector('.h').textContent=g('c');
+    c[1].querySelector('.d').textContent=g('d');
+  }
+  if(type==='verdict'){
+    el.querySelector('.t').textContent=g('a');
+    el.querySelector('.s').textContent=g('b');
+    if(g('a').length>80) el.querySelector('.t').style.fontSize='40px';
+  }
+</script>
+</body></html>
