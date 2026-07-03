@@ -13,42 +13,46 @@ const RSS_FEEDS = [
   'https://feeds.feedburner.com/venturebeat/SZYF',
 ];
 
-// Fallback pool: curated BOFU topics (buyer intent, low competition, high conversion)
-// Updated 2026-06-22 — prioritize "is it worth it?", pricing, alternatives, specific use cases
+// Fallback pool: verdict-driven, money-angle topics for THE persona (2026-07-03):
+// a solo creator/freelancer paying $20-60/mo for AI subscriptions, wondering
+// monthly if they're worth it. Every title takes a clear position — balanced,
+// reaction-free comparisons are banned. Affiliate-fit first (Writesonic,
+// ElevenLabs, Murf, Gamma).
 const FALLBACK_TOPICS = [
-  // High-conversion "worth it?" and pricing BOFU
-  { title: 'ChatGPT Plus vs Claude Pro: Which $20/Month AI Subscription Is Worth It in 2026?', url: 'https://openai.com', source: 'fallback' },
-  { title: 'Grammarly Premium Review 2026: Is $30/Month Worth It for Bloggers?', url: 'https://grammarly.com', source: 'fallback' },
-  { title: 'Notion AI Pricing Explained: Is the $10/Month Add-On Worth It?', url: 'https://notion.so', source: 'fallback' },
-  { title: 'Cursor AI Pro vs Free: Is the $20/Month Plan Worth It for Solo Developers?', url: 'https://cursor.sh', source: 'fallback' },
-  { title: 'Perplexity AI Free vs Pro: What Do You Actually Get for $20/Month?', url: 'https://perplexity.ai', source: 'fallback' },
-  { title: 'Jasper AI Pricing 2026: Is There a Cheaper Alternative That Does the Same Thing?', url: 'https://jasper.ai', source: 'fallback' },
-  { title: 'ElevenLabs Free Plan Limits 2026: Exactly How Many Characters Per Month?', url: 'https://elevenlabs.io', source: 'fallback' },
-  { title: 'Midjourney vs Adobe Firefly: Which AI Image Tool Is Worth Paying For in 2026?', url: 'https://midjourney.com', source: 'fallback' },
-  { title: 'Opus Clip Review 2026: Is AI Video Repurposing Worth $29/Month?', url: 'https://opus.pro', source: 'fallback' },
-  { title: 'HeyGen Free Trial Review: What Is Actually Included Before You Pay?', url: 'https://heygen.com', source: 'fallback' },
-  // Head-to-heads not yet covered
-  { title: 'Make vs Zapier vs n8n: Which AI Automation Platform Wins in 2026?', url: 'https://make.com', source: 'fallback' },
-  { title: 'Copy.ai vs Writesonic: Which Is Better for Long-Form Blog Posts in 2026?', url: 'https://copy.ai', source: 'fallback' },
-  { title: 'Superhuman AI vs HEY Email: Which AI Email Client Is Actually Faster?', url: 'https://superhuman.com', source: 'fallback' },
-  { title: 'Notion AI vs Obsidian with AI Plugins: Best AI Note-Taking App for Researchers?', url: 'https://notion.so', source: 'fallback' },
-  { title: 'Pika Labs vs Kling AI vs Luma: Best AI Video Tool for Social Media in 2026?', url: 'https://pika.art', source: 'fallback' },
-  { title: 'Claude Artifacts vs ChatGPT Canvas: Which AI Coding Sandbox Is Better?', url: 'https://anthropic.com', source: 'fallback' },
-  { title: 'Glean vs Microsoft Copilot for Enterprise: Best Workplace AI Search in 2026?', url: 'https://glean.com', source: 'fallback' },
-  { title: 'Arc Browser AI vs Brave AI vs Chrome AI: Which Browser Uses AI Best in 2026?', url: 'https://arc.net', source: 'fallback' },
-  { title: 'Otter.ai vs Fireflies vs Notion AI: Best AI Meeting Notetaker Compared 2026', url: 'https://otter.ai', source: 'fallback' },
-  { title: 'GitHub Copilot vs Amazon Q Developer: Best AI Coding Assistant for AWS Users?', url: 'https://github.com', source: 'fallback' },
-  // Niche/use-case BOFU (low competition)
-  { title: 'Best AI Tools for Freelancers in 2026: Tested and Ranked by Category', url: 'https://ynvesters.com', source: 'fallback' },
-  { title: 'Best AI Writing Tools for Non-Native English Speakers in 2026', url: 'https://ynvesters.com', source: 'fallback' },
-  { title: 'Best AI Tools for YouTube Creators in 2026: Script, Edit, and Repurpose', url: 'https://ynvesters.com', source: 'fallback' },
-  { title: 'Best AI Coding Assistants for Beginners 2026: No Experience Required', url: 'https://ynvesters.com', source: 'fallback' },
-  { title: 'Best AI Tools for Solo Founders in 2026: Run a Business Without a Team', url: 'https://ynvesters.com', source: 'fallback' },
-  { title: 'Claude API Pricing Explained: How Much Does It Cost to Build an AI App in 2026?', url: 'https://anthropic.com', source: 'fallback' },
-  { title: 'OpenAI API vs Claude API vs Gemini API: Cheapest LLM for Production Apps in 2026', url: 'https://openai.com', source: 'fallback' },
-  { title: 'Stable Diffusion vs Midjourney vs DALL-E 3: Which AI Art Tool for Commercial Use?', url: 'https://stability.ai', source: 'fallback' },
-  { title: 'Descript vs Riverside FM vs Squadcast: Best AI Podcast Recording Tool 2026', url: 'https://descript.com', source: 'fallback' },
-  { title: 'Gamma vs Beautiful.ai vs Tome: Best AI Presentation Tool Compared 2026', url: 'https://gamma.app', source: 'fallback' },
+  // Approved-affiliate priority (Writesonic 20%, ElevenLabs 22%, Murf 20%, Gamma 30%)
+  { title: 'Writesonic Review 2026: I Tested the $20 Plan So You Don\'t Have To', url: 'https://writesonic.com', source: 'fallback' },
+  { title: 'ElevenLabs vs Murf AI: The Only Voice AI Comparison with a Straight Answer', url: 'https://elevenlabs.io', source: 'fallback' },
+  { title: 'Gamma AI Is Underrated: Why I Stopped Making Slides the Old Way', url: 'https://gamma.app', source: 'fallback' },
+  { title: 'Murf AI Review 2026: Worth It or Just Another TTS Tool? A Blunt Verdict', url: 'https://murf.ai', source: 'fallback' },
+  { title: 'Don\'t Pay for Jasper: Writesonic Does 90% of It for Half the Price', url: 'https://writesonic.com', source: 'fallback' },
+  { title: 'Copy.ai vs Writesonic in 2026: One Is Clearly Better for Solo Creators', url: 'https://writesonic.com', source: 'fallback' },
+  { title: 'Selling AI Voiceovers in 2026: Can ElevenLabs Actually Make You Money?', url: 'https://elevenlabs.io', source: 'fallback' },
+  { title: 'Freelancers Are Charging $300 per Deck with Gamma — Here\'s the Playbook', url: 'https://gamma.app', source: 'fallback' },
+  // Money / stack-audit angle
+  { title: 'My $200/Month AI Stack Is Now $45 — Here\'s Exactly What I Cut', url: 'https://ynvesters.com', source: 'fallback' },
+  { title: 'The Only 3 AI Subscriptions Worth Paying For in 2026 (and 5 to Cancel)', url: 'https://ynvesters.com', source: 'fallback' },
+  { title: 'I Canceled ChatGPT Plus After 18 Months — Here\'s What Replaced It', url: 'https://openai.com', source: 'fallback' },
+  { title: 'ChatGPT Plus vs Claude Pro: Stop Paying for Both — How to Pick One', url: 'https://anthropic.com', source: 'fallback' },
+  { title: 'Free AI Tools That Beat Their Paid Versions in 2026 (Tested)', url: 'https://ynvesters.com', source: 'fallback' },
+  { title: 'Overrated: 5 AI Tools Everyone Recommends That Aren\'t Worth Your Money', url: 'https://ynvesters.com', source: 'fallback' },
+  { title: 'Underrated: 5 AI Tools Nobody Talks About That Beat the Big Names', url: 'https://ynvesters.com', source: 'fallback' },
+  { title: 'Midjourney Is Overpriced for Most People — Use These Instead', url: 'https://midjourney.com', source: 'fallback' },
+  // Verdict head-to-heads (high search volume, clear winner declared)
+  { title: 'Cursor vs GitHub Copilot: I Used Both for 3 Months — One Clear Winner', url: 'https://cursor.sh', source: 'fallback' },
+  { title: 'Notion AI Isn\'t Worth $10/Month — Unless You\'re This Kind of User', url: 'https://notion.so', source: 'fallback' },
+  { title: 'Perplexity Pro vs ChatGPT Plus: The $20 Question, Answered Bluntly', url: 'https://perplexity.ai', source: 'fallback' },
+  { title: 'Grammarly Premium Is Too Expensive — Here\'s Exactly When It\'s Worth It', url: 'https://grammarly.com', source: 'fallback' },
+  { title: 'Descript Review 2026: The Editor That Replaced 3 of My Subscriptions', url: 'https://descript.com', source: 'fallback' },
+  { title: 'HeyGen vs Synthesia: Don\'t Buy Either Until You Read This', url: 'https://heygen.com', source: 'fallback' },
+  { title: 'GPT-4o vs Claude for Freelance Writers: A Verdict After 100 Real Tasks', url: 'https://anthropic.com', source: 'fallback' },
+  { title: 'Zapier Is Overkill for Most Solopreneurs — Make Is the Smarter Buy', url: 'https://make.com', source: 'fallback' },
+  { title: 'Canva Pro vs Adobe Express: Which $120/Year Is the Better Spend?', url: 'https://canva.com', source: 'fallback' },
+  // Money-making crossover (AI × income)
+  { title: '5 AI Side Hustles That Actually Pay in 2026 (With Real Numbers)', url: 'https://ynvesters.com', source: 'fallback' },
+  { title: 'How I\'d Build a One-Person Business with $50/Month of AI Tools', url: 'https://ynvesters.com', source: 'fallback' },
+  { title: 'The Cheapest AI Stack for YouTube Creators in 2026 (Under $40/Month)', url: 'https://ynvesters.com', source: 'fallback' },
+  { title: 'AI Tools for Freelancers in 2026: The Short List That Pays for Itself', url: 'https://ynvesters.com', source: 'fallback' },
+  { title: 'Stop Buying AI Courses: The $0 Way to Learn Every Tool in This List', url: 'https://ynvesters.com', source: 'fallback' },
 ];
 
 async function getExistingSlugs() {

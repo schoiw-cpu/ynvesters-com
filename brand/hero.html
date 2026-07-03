@@ -1,0 +1,50 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{width:1200px;height:630px;overflow:hidden}
+  body{font-family:'Inter','Helvetica Neue',-apple-system,'Segoe UI',sans-serif;
+       background:linear-gradient(150deg,#101f38,#0b1830 55%,#081222)}
+  .grid{position:absolute;inset:0;
+       background-image:linear-gradient(#ffffff0a 1px,transparent 1px),
+                        linear-gradient(90deg,#ffffff0a 1px,transparent 1px);
+       background-size:60px 60px}
+  .glow{position:absolute;width:640px;height:640px;border-radius:50%;
+       background:radial-gradient(circle,#2563eb2e,transparent 65%);
+       right:-180px;top:-220px}
+  .in{position:absolute;inset:0;padding:72px 84px;display:flex;
+       flex-direction:column;justify-content:center;gap:30px}
+  .chip{align-self:flex-start;background:#2563eb26;border:2px solid #3b82f6;
+       color:#93c5fd;font-size:24px;font-weight:700;letter-spacing:1.5px;
+       text-transform:uppercase;padding:10px 26px;border-radius:999px}
+  .h{color:#f1f5f9;font-weight:800;line-height:1.18;letter-spacing:-1.5px}
+  .h .hl{color:#fbbf24}
+  .sub{color:#94a3b8;font-size:28px;font-weight:600}
+  .brand{position:absolute;bottom:34px;right:44px;display:flex;align-items:center;gap:12px}
+  .brand .dot{width:14px;height:14px;border-radius:4px;background:#fbbf24}
+  .brand .t{color:#cbd5e1;font-size:26px;font-weight:800;letter-spacing:.5px}
+  .bar{position:absolute;left:0;top:0;bottom:0;width:10px;
+       background:linear-gradient(#3b82f6,#fbbf24)}
+</style></head><body>
+  <div class="grid"></div><div class="glow"></div><div class="bar"></div>
+  <div class="in">
+    <div class="chip" id="chip"></div>
+    <div class="h" id="h"></div>
+    <div class="sub" id="sub"></div>
+  </div>
+  <div class="brand"><div class="dot"></div><div class="t">Ynvesters</div></div>
+<script>
+  const q = new URLSearchParams(location.search), g = k => q.get(k) || '';
+  document.getElementById('chip').textContent = g('chip') || 'AI Tools';
+  document.getElementById('sub').textContent = g('sub') || 'ynvesters.com · Hands-on AI tool verdicts';
+
+  const a = g('a'), b = g('b');
+  const h = document.getElementById('h');
+  const esc = s => { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; };
+  h.innerHTML = b
+    ? `<span class="hl">${esc(a)}</span><br>${esc(b)}`
+    : esc(a);
+
+  // Scale headline to fit: long titles get smaller type.
+  const len = (a + ' ' + b).length;
+  h.style.fontSize = len > 95 ? '46px' : len > 70 ? '54px' : len > 45 ? '62px' : '72px';
+</script>
+</body></html>

@@ -2,6 +2,7 @@
 import { discoverTopics } from './discover-topics.mjs';
 import { generatePost } from './generate-post.mjs';
 import { fetchImage } from './fetch-images.mjs';
+import { generateHero } from './generate-hero.mjs';
 import { writeFile, mkdir, readdir } from 'fs/promises';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -85,13 +86,18 @@ async function run() {
     console.log(`[pipeline] Selected: "${topic.title}" (${topic.source})`);
   }
 
-  // 2. Fetch image
-  console.log('[pipeline] Step 2: Fetching image...');
-  const imageData = DRY_RUN ? null : await fetchImage(topic.title, topic.slug);
+  // 2. Hero image: branded card first (original, $0, doubles as OG image);
+  //    Unsplash stock photo only as fallback if rendering fails.
+  console.log('[pipeline] Step 2: Generating hero image...');
+  let imageData = DRY_RUN ? null : await generateHero(topic.title, topic.slug);
+  if (!imageData && !DRY_RUN) {
+    console.log('[pipeline] Hero generation failed — falling back to Unsplash.');
+    imageData = await fetchImage(topic.title, topic.slug);
+  }
   if (imageData) {
-    console.log(`[pipeline] Image: ${imageData.localPath} (by ${imageData.credit})`);
+    console.log(`[pipeline] Image: ${imageData.localPath}${imageData.credit ? ` (by ${imageData.credit})` : ' (branded card)'}`);
   } else {
-    console.log('[pipeline] No image fetched.');
+    console.log('[pipeline] No image available.');
   }
 
   // 3. Generate post (with retry)

@@ -32,6 +32,16 @@ FACT DISCIPLINE — violations make the article worthless:
 - Never fabricate quotes, case studies, or "studies show" claims.
 - When comparing tools, only state differences you are confident about; frame uncertain points
   as "verify on their site" rather than guessing.
+- Opinionated titles ("I canceled X", "X is overrated") are our editorial voice — deliver the
+  verdict from the editorial "we" based on verifiable product facts (features, pricing, limits).
+  Do NOT invent fake personal anecdotes with specific made-up numbers ("my invoice was $47.32",
+  "I lost 3 clients"). A strong verdict argued from real product facts beats a fabricated story.
+
+VOICE — every article takes a position:
+- Write for one reader: a solo creator/freelancer paying $20–60/month for AI subscriptions,
+  wondering every month whether they're worth it.
+- End with a clear verdict: who should pay, who shouldn't, and what to do instead. Never
+  conclude with "it depends on your needs" — that sentence is banned.
 
 INTRODUCTION STYLE — this is critical:
 - Open with 1–2 sentences that name a specific, relatable pain point the reader has likely felt personally.
@@ -70,7 +80,7 @@ export async function generatePost(topic, imageData = null, dryRun = false) {
   const targetWords = randomWordCount();
 
   const frontmatterNote = imageData
-    ? `Hero image: path="${imageData.localPath}", alt="${imageData.alt}", credit="${imageData.credit}", creditUrl="${imageData.creditUrl}"`
+    ? `Hero image: path="${imageData.localPath}", alt="${imageData.alt}"${imageData.credit ? `, credit="${imageData.credit}", creditUrl="${imageData.creditUrl}"` : ' (self-generated branded card — no credit fields needed)'}`
     : 'No hero image available.';
 
   // Trend-radar topics cover just-announced products that are NOT in training
@@ -111,9 +121,9 @@ Requirements:
    - tags: [array of 3–5 relevant tags]
    - author: "AI Editorial Team"
    ${imageData ? `- heroImage: "${imageData.localPath}"
-   - heroImageAlt: "${imageData.alt}"
+   - heroImageAlt: "${imageData.alt}"${imageData.credit ? `
    - heroImageCredit: "${imageData.credit}"
-   - heroImageUrl: "${imageData.creditUrl}"` : ''}
+   - heroImageUrl: "${imageData.creditUrl}"` : ''}` : ''}
 
 2. After frontmatter, write the article body in Markdown.
 3. INTRODUCTION (first paragraph after frontmatter): Start with the reader's pain point or a vivid scenario — not a definition or statistic. Make them nod before you name the tool.

@@ -23,6 +23,7 @@
     "unsplash-js": "^7.0.20"
   },
   "devDependencies": {
-    "@types/node": "^25.9.1"
+    "@types/node": "^25.9.1",
+    "playwright": "^1.61.1"
   }
 }
