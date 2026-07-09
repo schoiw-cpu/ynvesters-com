@@ -146,8 +146,18 @@ Requirements:
    - heroImageAlt: "${imageData.alt}"${imageData.credit ? `
    - heroImageCredit: "${imageData.credit}"
    - heroImageUrl: "${imageData.creditUrl}"` : ''}` : ''}
+   - keyTakeaways: a YAML list of 3–4 self-contained bullet strings that summarize
+     the verdict/answer — each must make sense on its own with no surrounding context
+     (this is the passage AI engines quote). State the actual conclusion, not "this
+     article covers X". Example item: "Writesonic at $20/mo is the best value for solo
+     creators; Jasper's $49 only pays off with a team behind it."
+   - faq: a YAML list of 4 items, each "- q: ...\\n  a: ..." — real questions a buyer
+     searches ("Is X worth it?", "X vs Y?", "How much does X cost?") with a concise,
+     self-contained 1–3 sentence answer grounded in the article's facts.
 
-2. After frontmatter, write the article body in Markdown.
+2. After frontmatter, write the article body in Markdown. Do NOT repeat the
+   keyTakeaways or the FAQ inside the body — they render automatically from
+   frontmatter (a summary box near the top and an FAQ block at the end).
 3. INTRODUCTION (first paragraph after frontmatter): Start with the reader's pain point or a vivid scenario — not a definition or statistic. Make them nod before you name the tool.
 4. Include at least 3 external links to authoritative sources (official docs, GitHub, Wikipedia, etc.)
 5. Include a comparison table if applicable.
