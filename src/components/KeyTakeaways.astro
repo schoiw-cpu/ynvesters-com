@@ -1,0 +1,21 @@
+---
+// Self-contained summary box near the top of a post. This is the passage AI
+// engines (ChatGPT, Perplexity, Google AI Overviews) lift most readily — a
+// concise, context-free answer to the query. Also improves human scannability.
+interface Props {
+  items: string[];
+}
+const { items } = Astro.props;
+---
+
+{items.length > 0 && (
+  <aside
+    style="margin:0 0 2rem; border:1px solid var(--color-border); border-left:4px solid var(--color-accent); border-radius:8px; background:var(--color-bg2); padding:1.1rem 1.4rem;"
+    aria-label="Key takeaways"
+  >
+    <p style="font-size:0.78rem; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:var(--color-accent); margin:0 0 0.6rem;">Key Takeaways</p>
+    <ul style="margin:0; padding-left:1.2rem; line-height:1.7;">
+      {items.map((it) => <li style="margin-bottom:0.35rem;">{it}</li>)}
+    </ul>
+  </aside>
+)}

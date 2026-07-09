@@ -20,6 +20,11 @@ const posts = defineCollection({
     // Soft-retire low-value posts (zero search demand, no affiliate fit) without
     // deleting them: noindexed, hidden from listings and related links.
     noindex: z.boolean().default(false),
+    // GEO (AI-citation) structure. keyTakeaways renders a self-contained summary
+    // box near the top — the passage AI engines lift most readily. faq renders a
+    // visible Q&A block AND emits FAQPage JSON-LD for rich results + extraction.
+    keyTakeaways: z.array(z.string()).default([]),
+    faq: z.array(z.object({ q: z.string(), a: z.string() })).default([]),
   }),
 });
 
