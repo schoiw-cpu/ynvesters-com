@@ -36,7 +36,8 @@ const MIN_WORD_COUNT = 1200;
 const MIN_QUALITY_SCORE = 7;
 
 function slugify(str) {
-  return str.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 80);
+  // Strip year labels so URLs stay evergreen (see discover-topics.mjs slugify).
+  return str.toLowerCase().replace(/\b(in|for|of|by)\s+20[2-4][0-9]\b/g, '').replace(/\b20[2-4][0-9]\b/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 80).replace(/-+$/g, '');
 }
 
 async function assessQuality(content) {

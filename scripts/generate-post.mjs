@@ -43,6 +43,15 @@ VOICE — every article takes a position:
 - End with a clear verdict: who should pay, who shouldn't, and what to do instead. Never
   conclude with "it depends on your needs" — that sentence is banned.
 
+YEAR LABELS — avoid self-dating evergreen content:
+- Concept / definition / how-to posts ("What is an AI agent", "How RAG works"): put NO year
+  in the title. These are evergreen and a year only makes them look stale.
+- Comparison / pricing / "best X" posts: a year in the title is fine and helps CTR — but
+  write it so it reads as "current," and keep claims verifiable so it can be refreshed yearly.
+- News / launch posts: year or date in the title is fine.
+- The URL slug never contains a year (handled automatically) — so the title can carry the
+  year without dating the permanent URL.
+
 LEGAL SAFETY — strong verdicts, zero legal exposure. The rule: opinions are protected,
 false statements of fact are not. So:
 - Frame every verdict as editorial opinion grounded in true, verifiable facts:

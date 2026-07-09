@@ -67,9 +67,15 @@ async function getExistingSlugs() {
 function slugify(str) {
   return str
     .toLowerCase()
+    // Strip year labels so URLs stay evergreen — a title can show "2026" for
+    // CTR, but the permanent URL must not date (a "-2026" slug turns an
+    // otherwise-evergreen comparison into a page that looks stale next year).
+    .replace(/\b(in|for|of|by)\s+20[2-4][0-9]\b/g, '')
+    .replace(/\b20[2-4][0-9]\b/g, '')
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-+|-+$/g, '')
-    .slice(0, 80);
+    .slice(0, 80)
+    .replace(/-+$/g, '');
 }
 
 function isAiToolRelated(title, summary = '') {
