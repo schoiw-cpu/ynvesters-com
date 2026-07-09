@@ -38,20 +38,22 @@ function opencli(args) {
 const slugify = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
 const clean = (s) => String(s).replace(/\s+/g, ' ').trim();
 
-// Reddit search is fuzzy — "Perplexity worth it" surfaced r/AmItheAsshole
-// threads. Keep only posts that are actually ABOUT the tool: the tool name must
-// appear in the title (or the subreddit is named after it), and obviously
-// off-topic subreddits are blocked.
-const OFFTOPIC_SUBS = /amitheasshole|relationship|aita|jobhunting|antiwork|tifu|confession|advice|legaladvice|personalfinance/i;
+// Reddit search is fuzzy — common-word tool names pull the wrong domain
+// ("Runway" → r/flying, "Jasper" → r/EarthPorn, "Perplexity" → r/AmItheAsshole).
+// A post is on-topic only if the tool name is in the title AND the subreddit is
+// either named after the tool or a known AI/tech community. That subreddit gate
+// is what blocks the wrong-domain contamination.
+const AI_SUBS = /^(chatgpt|openai|claudeai|claudecode|anthropic|bard|googlegemini|gemini|perplexity|localllama|artificial|singularity|machinelearning|artificialinteligence|aitools|aivideo|aitubers|midjourney|dalle2|stablediffusion|sunoai|udio|notion|cursor|windsurf|githubcopilot|copilot|replit|webdev|programming|sideproject|saas|productivity|writingwithai|contentcreation|videoediting|texttospeech|voiceacting|elevenlabs|gammaapp|presentation)/i;
 
 function relevantPost(tool, post) {
-  const main = tool.toLowerCase().replace(/\s*ai\s*$/, '').trim();      // "notion", "cursor", "perplexity"
-  const spaced = main.replace(/([a-z])([A-Z])/g, '$1 $2');
+  const main = tool.toLowerCase().replace(/\s*ai\s*$/, '').trim();      // "notion", "runway ml", "perplexity"
+  const compact = main.replace(/\s+/g, '');
   const title = (post.title ?? '').toLowerCase();
   const sub = (post.subreddit ?? '').toLowerCase();
-  if (OFFTOPIC_SUBS.test(sub)) return false;
-  const nameHit = title.includes(main) || title.includes(spaced) || sub.includes(main.replace(/\s+/g, ''));
-  return nameHit;
+  const nameInTitle = title.includes(main) || title.includes(compact);
+  if (!nameInTitle) return false;
+  // Subreddit must relate to the tool OR be a recognized AI/tech community.
+  return sub.includes(compact) || sub.includes(main) || AI_SUBS.test(sub);
 }
 
 function goodQuote(text, score) {

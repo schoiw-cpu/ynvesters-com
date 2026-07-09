@@ -1,0 +1,65 @@
+{
+  "tool": "ChatGPT",
+  "slug": "chatgpt",
+  "source": "reddit",
+  "harvestedAt": "2026-07-09",
+  "threads": [
+    {
+      "title": "I asked ChatGPT to explain my job to a 5-year-old and now I'm questioning my entire career",
+      "subreddit": "r/ChatGPT",
+      "comments": 4411
+    },
+    {
+      "title": "Plus users, what do you use ChatGPT for that makes it worth the 20$?",
+      "subreddit": "r/ChatGPT",
+      "comments": 882
+    },
+    {
+      "title": "is ChatGPT worth it for programming these days?",
+      "subreddit": "r/ChatGPT",
+      "comments": 356
+    }
+  ],
+  "quotes": [
+    {
+      "text": "Rewording emails and messages before I send them. Cross checking information. Making sure I have schedules right. It's very good for people like me that overthink simple things to death.",
+      "score": 911,
+      "subreddit": "r/ChatGPT"
+    },
+    {
+      "text": "“proceeded to count to 47 before getting distracted” So….better than most data scientists then.",
+      "score": 630,
+      "subreddit": "r/ChatGPT"
+    },
+    {
+      "text": "I am an idiot. I simplify stuff to a level where my smooth unwrinkled brain can understand.",
+      "score": 540,
+      "subreddit": "r/ChatGPT"
+    },
+    {
+      "text": "Yeah I use it for coding. It's like having an intern who doesn't complain or get tired.",
+      "score": 448,
+      "subreddit": "r/ChatGPT"
+    },
+    {
+      "text": "This is savage of Chat GPT. You may want to read \"Bullshit Jobs\" by David Graeber. You're not alone.",
+      "score": 389,
+      "subreddit": "r/ChatGPT"
+    },
+    {
+      "text": "Quite a few software engineers in my company still tend to use Chat GPT for getting ideas and outlines of code. At the moment I'm not aware of any better alternatives.",
+      "score": 382,
+      "subreddit": "r/ChatGPT"
+    },
+    {
+      "text": "I went from a c student in my bachelor's program to A student in my graduate program because it helped me organize my writing",
+      "score": 302,
+      "subreddit": "r/ChatGPT"
+    },
+    {
+      "text": "> Nice. This is a super important job. Without it, we’d all be fucked and disease-ridden from standing knee-deep in wastewater. So thank you for what you do!🤘🏽",
+      "score": 204,
+      "subreddit": "r/ChatGPT"
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "tool": "Claude",
+  "slug": "claude",
+  "source": "reddit",
+  "harvestedAt": "2026-07-09",
+  "threads": [
+    {
+      "title": "Anthropic just published a postmortem explaining exactly why Claude felt dumber for the past month",
+      "subreddit": "r/ClaudeCode",
+      "comments": 597
+    },
+    {
+      "title": "People that have Claude subscription, is it worth it honestly?",
+      "subreddit": "r/ClaudeAI",
+      "comments": 315
+    },
+    {
+      "title": "I reverse-engineered the workflow that made Manus worth $2B and turned it into a Claude Code skill",
+      "subreddit": "r/ClaudeAI",
+      "comments": 185
+    }
+  ],
+  "quotes": [
+    {
+      "text": "so basically every single issue they gaslit us for weeks ended up being exactly what we thought it was. I think the community needs to collectively give themselves a pat on the back lol.",
+      "score": 753,
+      "subreddit": "r/ClaudeCode"
+    },
+    {
+      "text": "That sounds like we should all get one month worth of free credit.",
+      "score": 238,
+      "subreddit": "r/ClaudeCode"
+    },
+    {
+      "text": "> I’ll take my pat in the form of credit reimbursement, thank you! 🙏",
+      "score": 155,
+      "subreddit": "r/ClaudeCode"
+    },
+    {
+      "text": "started with $20, got limited fast, but product was good. upgraded to $100. best $100 i've spent for my use case",
+      "score": 148,
+      "subreddit": "r/ClaudeAI"
+    },
+    {
+      "text": "I’ve been doing it like this since early 2025. Claude is currently doing this within my Claude.md which I did not ask it to do",
+      "score": 113,
+      "subreddit": "r/ClaudeAI"
+    },
+    {
+      "text": "Is anyone at Anthropics actually using the customer Claude Code version itself? The drops in quality have been so obvious the last couple of weeks that it should have been blantly obvious to anyone who's actually using CC on a daily basis.",
+      "score": 97,
+      "subreddit": "r/ClaudeCode"
+    },
+    {
+      "text": "> At least they put a fun graphic at the top of their post 🙄",
+      "score": 95,
+      "subreddit": "r/ClaudeCode"
+    },
+    {
+      "text": "> Credit is one thing but I also wasted so much time steering it. Just sucks all around.",
+      "score": 67,
+      "subreddit": "r/ClaudeCode"
+    }
+  ]
+}

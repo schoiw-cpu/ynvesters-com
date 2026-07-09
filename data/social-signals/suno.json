@@ -1,0 +1,45 @@
+{
+  "tool": "Suno",
+  "slug": "suno",
+  "source": "reddit",
+  "harvestedAt": "2026-07-09",
+  "threads": [
+    {
+      "title": "I've made 3k songs... And this is my opinion on Suno users...",
+      "subreddit": "r/SunoAI",
+      "comments": 77
+    },
+    {
+      "title": "To those distributing Suno tracks to Spotify/Apple Music: Was it worth it, and what was your starting point?",
+      "subreddit": "r/SunoAI",
+      "comments": 70
+    },
+    {
+      "title": "I don't love the quality of the \"free\" Suno generations - is it worth paying for v4.5?",
+      "subreddit": "r/SunoAI",
+      "comments": 66
+    }
+  ],
+  "quotes": [
+    {
+      "text": "Suno isn’t quite an all in the box thing It’s a tool To get to the thing",
+      "score": 11,
+      "subreddit": "r/SunoAI"
+    },
+    {
+      "text": "> I wish I can frame this. Spot on. If you’re already musically inclined it’s almost a polisher, when you use it with full dependency is where it sounds generic",
+      "score": 9,
+      "subreddit": "r/SunoAI"
+    },
+    {
+      "text": "> Apparently you can't read, cause I didn't say I made 3k good songs.",
+      "score": 6,
+      "subreddit": "r/SunoAI"
+    },
+    {
+      "text": "> Studio quality music, but not studio quality sound.",
+      "score": 5,
+      "subreddit": "r/SunoAI"
+    }
+  ]
+}

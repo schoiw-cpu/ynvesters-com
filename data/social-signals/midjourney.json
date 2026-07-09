@@ -1,0 +1,65 @@
+{
+  "tool": "Midjourney",
+  "slug": "midjourney",
+  "source": "reddit",
+  "harvestedAt": "2026-07-09",
+  "threads": [
+    {
+      "title": "I made over 15,000 images using Midjourney. Was it worth is or was it a waste of time?",
+      "subreddit": "r/midjourney",
+      "comments": 647
+    },
+    {
+      "title": "Why is Midjourney still worth it?",
+      "subreddit": "r/midjourney",
+      "comments": 86
+    },
+    {
+      "title": "So I have figured out a workflow to fully automate creating video versions of Deep Dives. Using best of breed component APIs (Midjourney, AssemblyAI, Hedra) + a bunch of Python scripting. But is it worth it? Would you use it? Watch them? Are they too 'uncanny valley'?",
+      "subreddit": "r/notebooklm",
+      "comments": 66
+    }
+  ],
+  "quotes": [
+    {
+      "text": "You made kittens with backpacks and you think it was a waste???",
+      "score": 566,
+      "subreddit": "r/midjourney"
+    },
+    {
+      "text": "Nope, not worth it. . Just kidding man, if you enjoy it then that's all that matters. And the images look great! Scrolling through reddit - now that's a waste of time.",
+      "score": 187,
+      "subreddit": "r/midjourney"
+    },
+    {
+      "text": "> Thanks! I also made Blakcbearry and Raspbearry :)",
+      "score": 116,
+      "subreddit": "r/midjourney"
+    },
+    {
+      "text": "The artists I follow lean heavily into Midjourney. Moodboards are really powerful. Also, the lines blur. I often reprocess Midjourney output in nanobanana, stable diffusion etc., but it’s a very powerful tool in the kit.",
+      "score": 63,
+      "subreddit": "r/midjourney"
+    },
+    {
+      "text": "Might want to do more generating than just mostly pretty mystical women",
+      "score": 29,
+      "subreddit": "r/midjourney"
+    },
+    {
+      "text": "I mean it was most certainly a waste of time but who cares",
+      "score": 27,
+      "subreddit": "r/midjourney"
+    },
+    {
+      "text": "For the kitten pals and strawbeary, yes it was.",
+      "score": 26,
+      "subreddit": "r/midjourney"
+    },
+    {
+      "text": "MidJourney is one of the few services that prioritizes style and can match styles pretty well. Especially over the other services. There’s a reason they don’t typically come packaged with the big bucket subscriptions out there.",
+      "score": 26,
+      "subreddit": "r/midjourney"
+    }
+  ]
+}

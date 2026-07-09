@@ -1,0 +1,60 @@
+{
+  "tool": "Gemini",
+  "slug": "gemini",
+  "source": "reddit",
+  "harvestedAt": "2026-07-09",
+  "threads": [
+    {
+      "title": "Claude Code $200 – Still worth it now that Gemini CLI is out?",
+      "subreddit": "r/ClaudeAI",
+      "comments": 136
+    },
+    {
+      "title": "Considering switching to Gemini, worth it?",
+      "subreddit": "r/ChatGPTPro",
+      "comments": 115
+    },
+    {
+      "title": "i have been shortlisted for the Google Gemini Student Ambassador Program 2026 is it worth it?",
+      "subreddit": "r/Btechtards",
+      "comments": 75
+    }
+  ],
+  "quotes": [
+    {
+      "text": "Gemini is not nearly as good, they need to figure out tool calling. It kicks to flash too quickly and flash feels pretty dumb.",
+      "score": 138,
+      "subreddit": "r/ClaudeAI"
+    },
+    {
+      "text": "From GPT-5 Pro to Gemini? Hell no. From GPT-5 Plus to Gemini? No. Maybe Gemini 3.0 will change things, but as of 2.5 - just no. Look at livebench.ai for the reason.",
+      "score": 26,
+      "subreddit": "r/ChatGPTPro"
+    },
+    {
+      "text": "> Gemini is also \\*VERY\\* lazy and simply omits code on a regular basis. Even when you call it out, it still does it. I have several comments in the [Gemini.md](http://Gemini.md) file to try and stop it, but no luck so far.",
+      "score": 20,
+      "subreddit": "r/ClaudeAI"
+    },
+    {
+      "text": "Gemini’s model is just not as good. I’ve been happy with rovo dev which uses claude’s model yet still free.",
+      "score": 14,
+      "subreddit": "r/ClaudeAI"
+    },
+    {
+      "text": "I mean you can just use both, I tell claude code to ask gemini also",
+      "score": 7,
+      "subreddit": "r/ClaudeAI"
+    },
+    {
+      "text": "Spent about 20 minutes with it. Surprisingly slow and dumb. I don’t care how big the context window is (I don’t need to send my whole codebase and neither should you).",
+      "score": 6,
+      "subreddit": "r/ClaudeAI"
+    },
+    {
+      "text": "> And by \"tools\", we don't mean what tools are available, but specifically that the Claude models are incredibly talented at tool **use**.",
+      "score": 5,
+      "subreddit": "r/ClaudeAI"
+    }
+  ]
+}

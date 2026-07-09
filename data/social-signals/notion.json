@@ -1,0 +1,45 @@
+{
+  "tool": "Notion",
+  "slug": "notion",
+  "source": "reddit",
+  "harvestedAt": "2026-07-09",
+  "threads": [
+    {
+      "title": "Is Notion Pro worth it for an individual user who mostly uses Docs and Databases?",
+      "subreddit": "r/Notion",
+      "comments": 25
+    },
+    {
+      "title": "Is it worth it?",
+      "subreddit": "r/Notion",
+      "comments": 11
+    }
+  ],
+  "quotes": [
+    {
+      "text": "I just wish charts weren't limited on the free version. I don't want to pay $120/year just to have a few more graphs in my notes.",
+      "score": 11,
+      "subreddit": "r/Notion"
+    },
+    {
+      "text": "Same situation. If there was a one-time option or a less expensive subscription, as a single user, I'd pay right away. So I struggle to justify the cost for what I use it for.",
+      "score": 9,
+      "subreddit": "r/Notion"
+    },
+    {
+      "text": "> Yes this is the exact bottle neck I’m running into as a new user trying out a template that has multiple charts",
+      "score": 6,
+      "subreddit": "r/Notion"
+    },
+    {
+      "text": "I’m in sales and I paid for it for myself. The meeting recorded is brilliant then with the ai you can question the recording and then get it to write a follow up email. This alone has saved me hours of work",
+      "score": 6,
+      "subreddit": "r/Notion"
+    },
+    {
+      "text": "Honestly, unless you need to upload files larger than 5MB (like heavy PDFs or videos), the Pro plan is overkill for a solo user. I run my entire life on the free plan with zero issues. Save your money.",
+      "score": 6,
+      "subreddit": "r/Notion"
+    }
+  ]
+}

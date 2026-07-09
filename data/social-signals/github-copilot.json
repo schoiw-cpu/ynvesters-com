@@ -1,0 +1,50 @@
+{
+  "tool": "GitHub Copilot",
+  "slug": "github-copilot",
+  "source": "reddit",
+  "harvestedAt": "2026-07-09",
+  "threads": [
+    {
+      "title": "What AI tools are actually worth trying beyond GitHub Copilot in 2026?",
+      "subreddit": "r/ChatGPTCoding",
+      "comments": 99
+    },
+    {
+      "title": "Is Github Copilot still worth it?",
+      "subreddit": "r/GithubCopilot",
+      "comments": 68
+    },
+    {
+      "title": "Is Copilot worth the $10/month? Coming from Claude and confused about the limits",
+      "subreddit": "r/GithubCopilot",
+      "comments": 64
+    }
+  ],
+  "quotes": [
+    {
+      "text": "> I have never used X , I use Y is superior. Based on what? >",
+      "score": 7,
+      "subreddit": "r/ChatGPTCoding"
+    },
+    {
+      "text": "i bought a year and im enjoying it. I use it with Grok and its knocking stuff out",
+      "score": 6,
+      "subreddit": "r/GithubCopilot"
+    },
+    {
+      "text": "> Got suggestion For sub agents? And how to wire them to The workflow sessions?",
+      "score": 6,
+      "subreddit": "r/GithubCopilot"
+    },
+    {
+      "text": "Use Copilot as your interns and intermediate devs. Use Antigravity for your architects and senior devs. Interweave them in your workflow as needed. Why burn 3x requests when you have Antigravity with larger context and thinking modes.",
+      "score": 5,
+      "subreddit": "r/GithubCopilot"
+    },
+    {
+      "text": "> just to add a small caveat. the context window is still limited to around 200k for most models. but i think agentic tool calling compensates for that limitation.",
+      "score": 5,
+      "subreddit": "r/GithubCopilot"
+    }
+  ]
+}
