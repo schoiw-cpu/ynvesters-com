@@ -15,6 +15,20 @@ tags:
 author: Ynvesters
 heroImage: /images/photoroom-api.png
 heroImageAlt: How to Use the Photoroom API to Automate Background Removal at Scale
+keyTakeaways:
+  - "The Photoroom API automates background removal at scale via simple REST calls, processing a typical product image in under two seconds with support for files up to 30 MB and 25 MP resolution."
+  - "The Growth plan at ~$99/month handles 10,000 images — comparable to roughly one hour of freelance retouching work — making it economically compelling for mid-size e-commerce operations."
+  - "Photoroom outperforms general-purpose segmentation APIs (AWS Rekognition, Google Vision) on clean cutouts and edges, and tends to perform better than Remove.bg on complex scenes and human subjects, though the quality gap on clean product shots is marginal."
+  - "The article recommends starting on the free tier (50 credits) to validate output quality on your hardest cases — transparent products, fine hair, low-contrast edges — before committing to a paid plan."
+faq:
+  - q: "Is the Photoroom API worth it for e-commerce product photography?"
+    a: "According to the article, yes — for teams processing more than a few hundred images per month, the automation economics are clear. The Growth plan handles 10,000 images for ~$99/month, a volume that would cost significantly more in designer time or per-image retouching services."
+  - q: "Photoroom API vs Remove.bg: which is better?"
+    a: "The article rates both at four out of five stars for edge quality. The quality difference is described as marginal on clean product shots, but Photoroom tends to perform better on complex scenes and human subjects."
+  - q: "How much does the Photoroom API cost?"
+    a: "The article lists a Free tier (50 credits/month at $0), Starter at ~$29/month for 2,000 credits, Growth at ~$99/month for 10,000 credits, and Business at ~$299/month for 50,000 credits, with Enterprise pricing available on request. The article advises verifying current rates directly at photoroom.com/api as prices are subject to change."
+  - q: "Does adding a background cost extra API credits?"
+    a: "No — according to the article, adding a background or applying effects in the same API call does not cost additional credits; it counts as one credit per image regardless of what operations are applied."
 ---
 
 You've got 500 product images that need clean white backgrounds before tomorrow's catalog launch, and your designer just quoted you three days of work. If you've been there — manually cutting out products in Photoshop at 11 PM, or paying per-image rates to a retouching service that still gets the edges wrong — then the Photoroom API is worth your full attention.
