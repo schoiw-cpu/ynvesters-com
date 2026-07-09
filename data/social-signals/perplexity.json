@@ -1,0 +1,65 @@
+{
+  "tool": "Perplexity",
+  "slug": "perplexity",
+  "source": "reddit",
+  "harvestedAt": "2026-07-09",
+  "threads": [
+    {
+      "title": "I feel like Perplexity Pro just isn't worth it anymore.",
+      "subreddit": "r/perplexity_ai",
+      "comments": 112
+    },
+    {
+      "title": "Is it worth buying perplexity pro? :)",
+      "subreddit": "r/perplexity_ai",
+      "comments": 71
+    },
+    {
+      "title": "Is Perplexity Max/Computer worth it?",
+      "subreddit": "r/perplexity_ai",
+      "comments": 46
+    }
+  ],
+  "quotes": [
+    {
+      "text": "The constant nagging to upgrade to max and use computer even if you dont have credits is just so annoying.",
+      "score": 82,
+      "subreddit": "r/perplexity_ai"
+    },
+    {
+      "text": "you can get it for free if u have paypal ;)",
+      "score": 33,
+      "subreddit": "r/perplexity_ai"
+    },
+    {
+      "text": "Just tried websearch with gemma4 e2b, and it’s not too far off of the current perplexity pro experience. Spent an hour optimizing prompts and tools. I know, 80/20 is a bitch. But perplexity pro is not that spectacular anymore, indeed.",
+      "score": 21,
+      "subreddit": "r/perplexity_ai"
+    },
+    {
+      "text": "Idk, I got a year free so I feel like what I am paying is worth what I get.",
+      "score": 15,
+      "subreddit": "r/perplexity_ai"
+    },
+    {
+      "text": "> Yes, I feel like the original platform was slowly lost to the pursuit of the almighty dollar.",
+      "score": 14,
+      "subreddit": "r/perplexity_ai"
+    },
+    {
+      "text": "I have noticed the drop, but I paid the annual so I’m sticking it out. Plus, the other models don’t really offer anything better for me. It feels like they’re all doing the same thing- push for more money and deliver less quality.",
+      "score": 13,
+      "subreddit": "r/perplexity_ai"
+    },
+    {
+      "text": "Nixxed mine recently due to the phone number debacle (wouldn’t accept mine) despite having an annual that is far from finished",
+      "score": 8,
+      "subreddit": "r/perplexity_ai"
+    },
+    {
+      "text": "I love the computer. 70k credits burned in 2 months. Not a single line of code.",
+      "score": 8,
+      "subreddit": "r/perplexity_ai"
+    }
+  ]
+}

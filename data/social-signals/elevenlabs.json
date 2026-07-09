@@ -1,0 +1,55 @@
+{
+  "tool": "ElevenLabs",
+  "slug": "elevenlabs",
+  "source": "reddit",
+  "harvestedAt": "2026-07-09",
+  "threads": [
+    {
+      "title": "Do not clone your voice on ElevenLabs. It is not worth it.",
+      "subreddit": "r/passive_income",
+      "comments": 63
+    },
+    {
+      "title": "Is Elevenlabs even worth it?",
+      "subreddit": "r/aitubers",
+      "comments": 60
+    },
+    {
+      "title": "Is it worth switching from multiple tools (ElevenLabs, Captions, WAN, HeyGen) to a single Huggsfield subscription?",
+      "subreddit": "r/HiggsfieldAI",
+      "comments": 33
+    }
+  ],
+  "quotes": [
+    {
+      "text": "They just train their own models with your voice",
+      "score": 38,
+      "subreddit": "r/passive_income"
+    },
+    {
+      "text": "Lol this post ironically made me interested in cloning my voice for pennies.",
+      "score": 13,
+      "subreddit": "r/passive_income"
+    },
+    {
+      "text": "And what does it matter? I guess if you're a well known voice actor and don't want your voice attached to certain projects. But if you're just some random person looking to make some cash, nobody is going to know.",
+      "score": 13,
+      "subreddit": "r/passive_income"
+    },
+    {
+      "text": "Thanks for your comments as I was thinking of doing this but now won't.",
+      "score": 8,
+      "subreddit": "r/passive_income"
+    },
+    {
+      "text": "Google AI studio has a tts. It's not as easy to set up but once you get your prompt set up properly it's equal to elevenlabs. It is free too.",
+      "score": 6,
+      "subreddit": "r/aitubers"
+    },
+    {
+      "text": "> Are you ok with your voice used for nasty stuff for pennies?",
+      "score": 5,
+      "subreddit": "r/passive_income"
+    }
+  ]
+}

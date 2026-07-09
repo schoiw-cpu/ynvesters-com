@@ -1,0 +1,65 @@
+{
+  "tool": "Cursor",
+  "slug": "cursor",
+  "source": "reddit",
+  "harvestedAt": "2026-07-09",
+  "threads": [
+    {
+      "title": "Be honest — what are you actually paying for Cursor each month, and is it still worth it to you?",
+      "subreddit": "r/cursor",
+      "comments": 110
+    },
+    {
+      "title": "Is cursor still worth it now?",
+      "subreddit": "r/cursor",
+      "comments": 86
+    },
+    {
+      "title": "Cursor is still a beast with unlimited at $20usd",
+      "subreddit": "r/cursor",
+      "comments": 84
+    }
+  ],
+  "quotes": [
+    {
+      "text": "While Anthropic and OpenAi battle it out for who can create the most expensive model the fastest, Cursor just needs to stay as cheap as possible and they may just end up on top.",
+      "score": 109,
+      "subreddit": "r/cursor"
+    },
+    {
+      "text": "No, with all due respect if you have unlimited money and want to burn then surely buy it. If you have a fixed budget and want value for money then there are better alternatives like Windsurf, Droid factory ai, GLM Coding Plan with CC etc",
+      "score": 32,
+      "subreddit": "r/cursor"
+    },
+    {
+      "text": "> It's not unlimited, but Composer 2.5 is ultra cheap while being very capable. Using auto usage, you could use it a lot.",
+      "score": 29,
+      "subreddit": "r/cursor"
+    },
+    {
+      "text": "I stopped using Cursor a few months ago. Didn't Auto stop being unlimited? Is it unlimited again now?",
+      "score": 20,
+      "subreddit": "r/cursor"
+    },
+    {
+      "text": "$60 cursor and $100 Claude and $20 codex. I use them all within cursor. I had the $200 cursor ultra for a while but if you’re hammering the opus or sonnet you will burn through it and all the extra api they give for free very fast.",
+      "score": 11,
+      "subreddit": "r/cursor"
+    },
+    {
+      "text": "Better try for first month on each IDE/CLI. Since experience each person different. Recomendation like \\- Zed with CLI from Codex / CC \\- Copilot will be good alternative",
+      "score": 11,
+      "subreddit": "r/cursor"
+    },
+    {
+      "text": "I concur…been using it just like that for a year now!",
+      "score": 7,
+      "subreddit": "r/cursor"
+    },
+    {
+      "text": "It's what has kept me here. Cursor had made some frustrating changes, but $20 and Auto is the best bang for the buck right now.",
+      "score": 7,
+      "subreddit": "r/cursor"
+    }
+  ]
+}

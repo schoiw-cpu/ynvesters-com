@@ -2,8 +2,44 @@ import Anthropic from '@anthropic-ai/sdk';
 import dotenv from 'dotenv';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { existsSync, readdirSync, readFileSync } from 'node:fs';
 
 dotenv.config({ path: path.join(path.dirname(fileURLToPath(import.meta.url)), '../.env') });
+
+const SIGNALS_DIR = path.join(path.dirname(fileURLToPath(import.meta.url)), '../data/social-signals');
+
+// Real Reddit user quotes, harvested in-session (see social-harvest.mjs) and
+// committed as JSON. If the topic names a tool we have signals for, feed the
+// verbatim quotes so the article can include a grounded "What Real Users Say"
+// section. The generator may use ONLY these quotes — never invent sentiment.
+function buildSocialBlock(title) {
+  if (!existsSync(SIGNALS_DIR)) return '';
+  const t = title.toLowerCase();
+  const matched = [];
+  for (const file of readdirSync(SIGNALS_DIR)) {
+    if (!file.endsWith('.json')) continue;
+    let data;
+    try { data = JSON.parse(readFileSync(path.join(SIGNALS_DIR, file), 'utf-8')); } catch { continue; }
+    const main = (data.tool ?? '').toLowerCase().replace(/\s*ai\s*$/, '').trim();
+    if (main && t.includes(main)) matched.push(data);
+  }
+  if (matched.length === 0) return '';
+
+  const lines = matched.flatMap((d) =>
+    (d.quotes ?? []).slice(0, 4).map((q) => `- (${q.subreddit}, ${q.score} upvotes) "${q.text}"`)
+  ).slice(0, 6);
+  if (lines.length === 0) return '';
+
+  return `
+REAL REDDIT USER QUOTES (verbatim, from public discussions harvested for this article's tools):
+${lines.join('\n')}
+
+Use these to write a "## What Real Users Say" section (3–5 sentences). Quote or tightly
+paraphrase 3–4 of them and attribute to the subreddit ("one r/cursor user notes…"). You may
+use ONLY the quotes above — do NOT invent additional quotes, users, or sentiment. If a quote
+is negative, include it: balance builds trust. Never use a Reddit username, only the subreddit.
+`;
+}
 
 const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
@@ -127,9 +163,11 @@ ${topic.grounding}
 `
     : '';
 
+  const socialBlock = buildSocialBlock(topic.title);
+
   const prompt = `Write a ${template} article about: "${topic.title}"
 Source URL (use as reference, do not reproduce verbatim): ${topic.url}
-${groundingBlock}
+${groundingBlock}${socialBlock}
 Style: ${template}
 Target length: ~${targetWords} words
 ${frontmatterNote}
