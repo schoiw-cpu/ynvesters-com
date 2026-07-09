@@ -14,7 +14,7 @@ const posts = defineCollection({
     heroImageUrl: z.string().optional(),
     category: z.string().default('AI Tools'),
     tags: z.array(z.string()).default([]),
-    author: z.string().default('AI Editorial Team'),
+    author: z.string().default('Ynvesters'),
     wordCount: z.number().optional(),
     featured: z.boolean().default(false),
     // Soft-retire low-value posts (zero search demand, no affiliate fit) without

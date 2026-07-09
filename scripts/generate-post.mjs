@@ -141,7 +141,7 @@ Requirements:
    - pubDate: ${new Date().toISOString().split('T')[0]}
    - category: "AI Tools"
    - tags: [array of 3–5 relevant tags]
-   - author: "AI Editorial Team"
+   - author: "Ynvesters"
    ${imageData ? `- heroImage: "${imageData.localPath}"
    - heroImageAlt: "${imageData.alt}"${imageData.credit ? `
    - heroImageCredit: "${imageData.credit}"

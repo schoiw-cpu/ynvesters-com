@@ -5,7 +5,7 @@ interface Props {
   author?: string;
   category?: string;
 }
-const { pubDate, updatedDate, author = 'AI Editorial Team', category = 'AI Tools' } = Astro.props;
+const { pubDate, updatedDate, author = 'Ynvesters', category = 'AI Tools' } = Astro.props;
 
 const formatted = (d: Date) =>
   d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
