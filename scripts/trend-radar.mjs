@@ -38,6 +38,7 @@ function isAiRelated(text) {
 // "Introducing GPT-5.6" -> "GPT-5.6"
 function extractSubject(title) {
   return title
+    .replace(/^show hn:\s*/i, '')
     .replace(/^(introducing|announcing|meet|say hello to)\s+/i, '')
     .replace(/^["'"']|["'"']$/g, '')
     .trim();
@@ -113,7 +114,10 @@ async function checkHackerNews() {
       .filter(h => isAiRelated(h.title ?? ''))
       // A 300-point essay/opinion piece can't take a "pricing / worth it?"
       // companion — only launch-shaped stories qualify.
-      .filter(h => LAUNCH_KEYWORDS.test(h.title ?? '') || /^show hn/i.test(h.title ?? ''))
+      .filter(h => LAUNCH_KEYWORDS.test(h.title ?? ''))
+      // Exclude "Show HN" — those are obscure micro-tools with near-zero search
+      // volume and no persona fit (published Microsoft Flint, a niche dev tool).
+      .filter(h => !/^show hn/i.test(h.title ?? ''))
       .filter(h => !EXCLUDE_PATTERNS.test(h.title ?? ''))
       .map(h => ({
         sourceTitle: h.title,
