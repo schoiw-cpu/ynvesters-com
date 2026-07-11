@@ -43,3 +43,7 @@ secrets.toml
 .streamlit/secrets.toml
 *.key
 # === 비밀정보 보호 끝 ===
+
+# 개인 세금서류 (절대 커밋 금지)
+W-8BEN*.pdf
+*_filled*.pdf
