@@ -20,7 +20,7 @@ const OUT_DIR = path.join(__dirname, '../data/social-signals');
 const FRESH_DAYS = 21;
 const MAX_POSTS = 3;       // top posts to read per tool
 const MAX_QUOTES = 8;      // genuine quotes kept per tool
-const MIN_SCORE = 5;       // comment upvote floor
+const MIN_SCORE = 3;       // comment upvote floor (>=3 = genuinely upvoted, not just visible)
 
 const PATH_EXT = `${process.env.HOME}/.npm-global/bin:${process.env.HOME}/.agent-reach-venv/bin:/opt/homebrew/bin:${process.env.PATH}`;
 const force = process.argv.includes('--force');
@@ -49,7 +49,10 @@ function relevantPost(tool, post) {
   const main = tool.toLowerCase().replace(/\s*ai\s*$/, '').trim();      // "notion", "runway ml", "perplexity"
   const compact = main.replace(/\s+/g, '');
   const title = (post.title ?? '').toLowerCase();
-  const sub = (post.subreddit ?? '').toLowerCase();
+  // Subreddit arrives as "r/Name"; strip the prefix so the AI_SUBS allowlist
+  // (anchored with ^) actually matches — without this it never fired, silently
+  // rejecting valid AI subs like r/aitubers.
+  const sub = (post.subreddit ?? '').toLowerCase().replace(/^r\//, '');
   const nameInTitle = title.includes(main) || title.includes(compact);
   if (!nameInTitle) return false;
   // Subreddit must relate to the tool OR be a recognized AI/tech community.
@@ -60,7 +63,7 @@ function goodQuote(text, score) {
   if (!text || text === '[deleted]' || text === '[removed]') return false;
   if (!Number.isInteger(score) || score < MIN_SCORE) return false;
   const len = text.length;
-  if (len < 40 || len > 240) return false;
+  if (len < 30 || len > 280) return false;
   if (/^https?:\/\//.test(text) || /\bhttps?:\/\/\S+\s*$/.test(text)) return false;
   return true;
 }
