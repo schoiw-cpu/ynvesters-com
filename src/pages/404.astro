@@ -1,0 +1,35 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// Without this page Cloudflare Pages falls back to index.html with a 200 for
+// every unmatched path — a soft 404. Google then sees unlimited URLs all
+// serving identical homepage content, can't trust the URL structure, and stops
+// indexing (this site's stale pre-existing URLs were all returning 200 too).
+// Astro emits 404.html, which Cloudflare Pages serves with a real 404 status.
+---
+
+<BaseLayout
+  title="Page Not Found – Ynvesters"
+  description="The page you're looking for doesn't exist. Browse our AI tool reviews and comparisons instead."
+  noIndex={true}
+>
+  <div style="max-width: var(--max-width); margin: 0 auto; padding: 5rem 1.5rem; text-align: center;">
+    <p style="font-size:0.85rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--color-accent); margin:0 0 0.75rem;">404</p>
+    <h1 style="font-size:2rem; font-weight:800; margin:0 0 0.75rem;">This page doesn't exist</h1>
+    <p style="color:var(--color-text-muted); font-size:1.05rem; margin:0 0 2rem;">
+      The link may be broken, or the page may have been removed. Here's where to go instead:
+    </p>
+
+    <div style="display:flex; gap:0.75rem; justify-content:center; flex-wrap:wrap;">
+      <a href="/" style="display:inline-block; padding:0.7rem 1.5rem; background:var(--color-accent); color:#fff; border-radius:8px; font-weight:600; text-decoration:none;">
+        Home
+      </a>
+      <a href="/topics" style="display:inline-block; padding:0.7rem 1.5rem; background:var(--color-bg2); border:1px solid var(--color-border); color:var(--color-text); border-radius:8px; font-weight:600; text-decoration:none;">
+        Browse by Topic
+      </a>
+      <a href="/posts" style="display:inline-block; padding:0.7rem 1.5rem; background:var(--color-bg2); border:1px solid var(--color-border); color:var(--color-text); border-radius:8px; font-weight:600; text-decoration:none;">
+        All Reviews
+      </a>
+    </div>
+  </div>
+</BaseLayout>
