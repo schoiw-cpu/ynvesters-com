@@ -34,7 +34,7 @@ const formatDate = (d: Date) =>
     {featured && (
       <section style="margin-bottom: 3rem;">
         <h2 style="font-size:1rem; text-transform:uppercase; letter-spacing:.08em; color:var(--color-text-muted); margin-bottom:1rem;">Featured</h2>
-        <a href={`/posts/${featured.id}`} style="display:block; background:var(--color-bg2); border-radius:12px; overflow:hidden; text-decoration:none; color:inherit; border:1px solid var(--color-border);">
+        <a href={`/posts/${featured.id}/`} style="display:block; background:var(--color-bg2); border-radius:12px; overflow:hidden; text-decoration:none; color:inherit; border:1px solid var(--color-border);">
           {featured.data.heroImage && (
             <img src={featured.data.heroImage} alt={featured.data.heroImageAlt ?? featured.data.title} style="width:100%; height:280px; object-fit:cover;" loading="lazy" />
           )}
@@ -54,14 +54,14 @@ const formatDate = (d: Date) =>
         {posts.filter(p => p !== featured).map((post) => (
           <article style="background:var(--color-bg2); border:1px solid var(--color-border); border-radius:10px; overflow:hidden;">
             {post.data.heroImage && (
-              <a href={`/posts/${post.id}`}>
+              <a href={`/posts/${post.id}/`}>
                 <img src={post.data.heroImage} alt={post.data.heroImageAlt ?? post.data.title} style="width:100%; height:180px; object-fit:cover;" loading="lazy" />
               </a>
             )}
             <div style="padding:1.25rem;">
               <span style="font-size:0.75rem; color:var(--color-accent); font-weight:600; text-transform:uppercase;">{post.data.category}</span>
               <h3 style="font-size:1rem; margin:0.5rem 0; line-height:1.4;">
-                <a href={`/posts/${post.id}`} style="color:var(--color-text);">{post.data.title}</a>
+                <a href={`/posts/${post.id}/`} style="color:var(--color-text);">{post.data.title}</a>
               </h3>
               <p style="font-size:0.875rem; color:var(--color-text-muted); margin:0 0 0.75rem; line-height:1.5;">{post.data.description}</p>
               <span style="font-size:0.8rem; color:var(--color-text-muted);">{formatDate(post.data.pubDate)}</span>
@@ -70,7 +70,7 @@ const formatDate = (d: Date) =>
         ))}
       </div>
       <div style="text-align:center; margin-top:2.5rem;">
-        <a href="/posts" style="display:inline-block; padding:0.75rem 2rem; background:var(--color-accent); color:#fff; border-radius:8px; font-weight:600; font-size:0.95rem; text-decoration:none;">
+        <a href="/posts/" style="display:inline-block; padding:0.75rem 2rem; background:var(--color-accent); color:#fff; border-radius:8px; font-weight:600; font-size:0.95rem; text-decoration:none;">
           View All {allPosts.length} Articles →
         </a>
       </div>

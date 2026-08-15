@@ -31,7 +31,7 @@ const categories = [...new Set(posts.map(p => p.data.category).filter(Boolean))]
       {posts.map((post) => (
         <article style="background: var(--color-bg2); border: 1px solid var(--color-border); border-radius: 10px; overflow: hidden; display: flex; flex-direction: column;">
           {post.data.heroImage && (
-            <a href={`/posts/${post.id}`} style="display: block; overflow: hidden; flex-shrink: 0;">
+            <a href={`/posts/${post.id}/`} style="display: block; overflow: hidden; flex-shrink: 0;">
               <img
                 src={post.data.heroImage}
                 alt={post.data.heroImageAlt ?? post.data.title}
@@ -45,7 +45,7 @@ const categories = [...new Set(posts.map(p => p.data.category).filter(Boolean))]
               {post.data.category}
             </span>
             <h2 style="font-size: 1rem; margin: 0 0 0.5rem; line-height: 1.4; font-weight: 700;">
-              <a href={`/posts/${post.id}`} style="color: var(--color-text); text-decoration: none;">
+              <a href={`/posts/${post.id}/`} style="color: var(--color-text); text-decoration: none;">
                 {post.data.title}
               </a>
             </h2>

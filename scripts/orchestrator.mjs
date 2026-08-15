@@ -4,12 +4,13 @@ import { generatePost } from './generate-post.mjs';
 import { fetchImage } from './fetch-images.mjs';
 import { generateHero } from './generate-hero.mjs';
 import { processCardDirectives } from './generate-cards.mjs';
-import { writeFile, mkdir, readdir } from 'fs/promises';
+import { writeFile, mkdir, readdir, access } from 'fs/promises';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const POSTS_DIR = path.join(__dirname, '../src/content/posts');
+const COMPONENTS_DIR = path.join(__dirname, '../src/components');
 const DRY_RUN = process.argv.includes('--dry-run');
 const FORCE_TOPIC = process.argv.find(a => a.startsWith('--topic='))?.split('=')[1];
 
@@ -30,6 +31,32 @@ async function shouldSkipWeekend() {
     // posts dir doesn't exist yet, continue
   }
   return false;
+}
+
+// The generator occasionally invents a component import (e.g. HeroImage) that
+// doesn't exist. MDX resolves imports at build time, so one such line breaks the
+// whole Cloudflare Pages build and silently freezes deploys for every later post.
+// Strip any import whose .astro file is missing, plus that component's tags.
+async function stripPhantomComponents(content) {
+  const importRe = /^import\s+(\w+)\s+from\s+['"]([^'"]+\.astro)['"];?\s*$/gm;
+  const phantoms = [];
+  for (const [line, name, spec] of content.matchAll(importRe)) {
+    const file = path.join(COMPONENTS_DIR, path.basename(spec));
+    try {
+      await access(file);
+    } catch {
+      phantoms.push({ line, name });
+    }
+  }
+  for (const { line, name } of phantoms) {
+    console.warn(`[pipeline] Stripping phantom component <${name}> — src/components/${name}.astro does not exist.`);
+    content = content
+      .replace(line, '')
+      .replace(new RegExp(`^\\s*<${name}\\b[^>]*/>\\s*$`, 'gm'), '')
+      .replace(new RegExp(`^\\s*<${name}\\b[\\s\\S]*?</${name}>\\s*$`, 'gm'), '');
+  }
+  // collapse blank-line runs left behind by the removals
+  return phantoms.length ? content.replace(/\n{3,}/g, '\n\n') : content;
 }
 
 const MIN_WORD_COUNT = 1200;
@@ -128,6 +155,9 @@ async function run() {
   // 4.5 Render in-article info cards (stat/vs/verdict) from directives the
   //     generator embedded; failed renders are stripped, never published raw.
   result.content = await processCardDirectives(result.content, topic.slug);
+
+  // 4.6 Drop imports of components that don't exist — one breaks the whole build.
+  result.content = await stripPhantomComponents(result.content);
 
   // 5. Save MDX file
   await mkdir(POSTS_DIR, { recursive: true });

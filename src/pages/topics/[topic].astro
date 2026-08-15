@@ -26,7 +26,7 @@ const formatDate = (d) => d.toLocaleDateString('en-US', { year: 'numeric', month
   description={`In-depth ${label} tool reviews, comparisons, and buying verdicts — ${posts.length} hands-on articles from Ynvesters.`}
 >
   <div style="max-width: var(--max-width-wide); margin: 0 auto; padding: 2rem 1.5rem;">
-    <p style="margin:0 0 0.4rem;"><a href="/topics" style="font-size:0.9rem;">← All topics</a></p>
+    <p style="margin:0 0 0.4rem;"><a href="/topics/" style="font-size:0.9rem;">← All topics</a></p>
     <h1 style="font-size:2rem; font-weight:800; margin:0 0 0.5rem;">{label}</h1>
     <p style="color:var(--color-text-muted); margin:0 0 2rem;">{posts.length} reviews, comparisons, and verdicts.</p>
 
@@ -34,13 +34,13 @@ const formatDate = (d) => d.toLocaleDateString('en-US', { year: 'numeric', month
       {posts.map((post) => (
         <article style="background:var(--color-bg2); border:1px solid var(--color-border); border-radius:10px; overflow:hidden;">
           {post.data.heroImage && (
-            <a href={`/posts/${post.id}`}>
+            <a href={`/posts/${post.id}/`}>
               <img src={post.data.heroImage} alt={post.data.heroImageAlt ?? post.data.title} style="width:100%; height:170px; object-fit:cover;" loading="lazy" />
             </a>
           )}
           <div style="padding:1.15rem;">
             <h2 style="font-size:1rem; margin:0 0 0.5rem; line-height:1.4;">
-              <a href={`/posts/${post.id}`} style="color:var(--color-text);">{post.data.title}</a>
+              <a href={`/posts/${post.id}/`} style="color:var(--color-text);">{post.data.title}</a>
             </h2>
             <p style="font-size:0.85rem; color:var(--color-text-muted); margin:0 0 0.6rem; line-height:1.5;">{post.data.description}</p>
             <span style="font-size:0.8rem; color:var(--color-text-muted);">{formatDate(post.data.pubDate)}</span>

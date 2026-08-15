@@ -20,7 +20,7 @@ export async function getStaticPaths() {
 const { post } = Astro.props;
 const { Content } = await render(post);
 const { title, description, pubDate, updatedDate, heroImage, heroImageAlt, heroImageCredit, heroImageUrl, author, category, tags, keyTakeaways, faq } = post.data;
-const canonical = new URL(`/posts/${post.id}`, 'https://ynvesters.com').href;
+const canonical = new URL(`/posts/${post.id}/`, 'https://ynvesters.com').href;
 ---
 
 <BaseLayout {title} {description} image={heroImage} {pubDate} {author} noIndex={post.data.noindex}>
@@ -67,7 +67,7 @@ const canonical = new URL(`/posts/${post.id}`, 'https://ynvesters.com').href;
 
     <footer style="margin-top:3rem; padding-top:1.5rem; border-top:1px solid var(--color-border);">
       <p style="font-size:0.875rem; color:var(--color-text-muted);">
-        Published by <a href="/about">Ynvesters</a>. Last updated: {(updatedDate ?? pubDate).toLocaleDateString('en-US', { year:'numeric', month:'long', day:'numeric' })}.
+        Published by <a href="/about/">Ynvesters</a>. Last updated: {(updatedDate ?? pubDate).toLocaleDateString('en-US', { year:'numeric', month:'long', day:'numeric' })}.
       </p>
       <a href="/" style="display:inline-block; margin-top:1rem; font-size:0.9rem;">&larr; Back to Home</a>
     </footer>

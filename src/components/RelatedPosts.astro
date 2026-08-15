@@ -74,7 +74,7 @@ const related = scored.filter((s) => s.score >= 100).slice(0, 4).map((s) => s.po
     <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:1rem;">
       {related.map((post) => (
         <a
-          href={`/posts/${post.id}`}
+          href={`/posts/${post.id}/`}
           style="display:block; background:var(--color-bg2); border:1px solid var(--color-border); border-radius:8px; padding:1rem 1.15rem; text-decoration:none; color:inherit;"
         >
           <span style="font-size:0.72rem; color:var(--color-accent); font-weight:600; text-transform:uppercase;">{post.data.category}</span>

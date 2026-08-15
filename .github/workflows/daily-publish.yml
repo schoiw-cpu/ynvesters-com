@@ -1,9 +1,14 @@
 name: Daily Content Publish
 
+# 자동 발행 일시 중단 (2026-08-15).
+# 이유: GSC 기준 72페이지 중 색인 2개, 63개가 "발견됨 - 크롤 안 됨" 상태.
+# 병목은 콘텐츠 공급이 아니라 크롤 예산(= 외부 링크 0개)이므로, 글을 더 얹어도
+# 대기줄만 늘고 API 비용만 나간다. 외부 링크 확보로 크롤이 살아나는지 확인한 뒤 재개할 것.
+# 재개 방법: 아래 schedule 블록의 주석을 해제.
 on:
-  schedule:
-    - cron: '0 6 * * *'     # 06:00 UTC, 매일 (주 7회) — 30개 도달 후 주 5회로 전환 예정
-  workflow_dispatch:          # 수동 트리거도 가능
+  # schedule:
+  #   - cron: '0 6 * * *'     # 06:00 UTC, 매일
+  workflow_dispatch:          # 수동 트리거는 계속 가능
 
 jobs:
   publish:
@@ -41,6 +46,13 @@ jobs:
         id: check
         run: |
           git status --porcelain src/content/posts/ public/images/ | grep -q . && echo "has_changes=true" >> $GITHUB_OUTPUT || true
+
+      # A single bad MDX (e.g. an invented component import) breaks the Astro build.
+      # Cloudflare Pages then fails silently and every later post stays unpublished,
+      # so verify the build BEFORE committing — never push content that can't deploy.
+      - name: Verify build
+        if: steps.check.outputs.has_changes == 'true'
+        run: npm run build
 
       - name: Commit and push
         if: steps.check.outputs.has_changes == 'true'
