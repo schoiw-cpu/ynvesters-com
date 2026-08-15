@@ -1,0 +1,16 @@
+# Slugs renamed 2026-08-15: the old ones asserted first-hand testing that
+# never happened, and the URL is visible wherever the post gets shared.
+# Both forms listed so the redirect resolves in one hop instead of chaining
+# through the trailing-slash normalizer.
+
+/posts/writesonic-review-i-tested-the-20-plan-so-you-don-t-have-to  /posts/writesonic-review-is-the-20-plan-worth-it/  301
+/posts/writesonic-review-i-tested-the-20-plan-so-you-don-t-have-to/  /posts/writesonic-review-is-the-20-plan-worth-it/  301
+
+/posts/cursor-vs-github-copilot-i-used-both-for-3-months-one-clear-winner  /posts/cursor-vs-github-copilot-one-clear-winner-for-solo-developers/  301
+/posts/cursor-vs-github-copilot-i-used-both-for-3-months-one-clear-winner/  /posts/cursor-vs-github-copilot-one-clear-winner-for-solo-developers/  301
+
+/posts/gpt-4o-vs-claude-for-freelance-writers-a-verdict-after-100-real-tasks  /posts/gpt-4o-vs-claude-for-freelance-writers-a-straight-verdict/  301
+/posts/gpt-4o-vs-claude-for-freelance-writers-a-verdict-after-100-real-tasks/  /posts/gpt-4o-vs-claude-for-freelance-writers-a-straight-verdict/  301
+
+/posts/free-ai-tools-that-beat-their-paid-versions-tested  /posts/free-ai-tools-that-beat-their-paid-versions/  301
+/posts/free-ai-tools-that-beat-their-paid-versions-tested/  /posts/free-ai-tools-that-beat-their-paid-versions/  301
