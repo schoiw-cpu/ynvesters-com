@@ -55,10 +55,32 @@ const FALLBACK_TOPICS = [
   { title: 'Stop Buying AI Courses: The $0 Way to Learn Every Tool in This List', url: 'https://ynvesters.com', source: 'fallback' },
 ];
 
-async function getExistingSlugs() {
+// Dedupe on a canonical key rather than the raw filename. Exact-slug matching
+// let a verbatim duplicate through: posts filed before the year-stripping rule
+// below carry "-in-2026-" in their filename, so the slug the same title
+// generates today no longer matched and the topic looked unused. That shipped
+// "The Only 3 AI Subscriptions Worth Paying For in 2026" twice, on 07-06 and
+// 07-17. Sorting the tokens also catches reordered titles (X vs Y / Y vs X).
+const DEDUPE_STOPWORDS = new Set([
+  'the', 'a', 'an', 'and', 'or', 'for', 'of', 'to', 'in', 'on', 'is', 'are',
+  'it', 'its', 'you', 'your', 'we', 'i', 'my', 'with', 'what', 'how', 'why',
+  'vs', 'so', 'that', 'this', 'be', 'at', 'as', 'but',
+]);
+
+function dedupeKey(slugOrTitle) {
+  return slugify(slugOrTitle)
+    .split('-')
+    .filter(w => w && !DEDUPE_STOPWORDS.has(w))
+    .sort()
+    .join('-');
+}
+
+async function getExistingKeys() {
   try {
     const files = await readdir(POSTS_DIR);
-    return new Set(files.map(f => f.replace(/\.mdx?$/, '')));
+    return new Set(
+      files.filter(f => /\.mdx?$/.test(f)).map(f => dedupeKey(f.replace(/\.mdx?$/, '')))
+    );
   } catch {
     return new Set();
   }
@@ -126,7 +148,7 @@ async function fetchFromRss(feedUrl) {
 }
 
 export async function discoverTopics(limit = 5) {
-  const existingSlugs = await getExistingSlugs();
+  const existingKeys = await getExistingKeys();
 
   // Priority 0 — trend radar: on days a frontier lab ships something big (or an
   // AI story crosses 300+ HN points), ride the wave with a same-day BOFU
@@ -137,7 +159,7 @@ export async function discoverTopics(limit = 5) {
   const trend = await detectBigTrend();
   if (trend) {
     const slug = slugify(trend.title);
-    if (!existingSlugs.has(slug)) {
+    if (!existingKeys.has(dedupeKey(trend.title))) {
       return [{ ...trend, slug }];
     }
     console.log('[discover] Trend already covered; falling through to BOFU pool.');
@@ -147,10 +169,7 @@ export async function discoverTopics(limit = 5) {
   // affiliate fit. RSS news topics (obscure launches, research projects) were getting
   // published for weeks with near-zero search volume and no monetization path —
   // RSS is now only a last resort when the curated pool runs dry.
-  const fallbackCandidates = FALLBACK_TOPICS.filter(t => {
-    const slug = slugify(t.title);
-    return !existingSlugs.has(slug);
-  });
+  const fallbackCandidates = FALLBACK_TOPICS.filter(t => !existingKeys.has(dedupeKey(t.title)));
 
   if (fallbackCandidates.length > 0) {
     const picked = fallbackCandidates[Math.floor(Math.random() * fallbackCandidates.length)];
@@ -162,10 +181,7 @@ export async function discoverTopics(limit = 5) {
   const rssResults = await Promise.all(RSS_FEEDS.map(fetchFromRss));
   const allRssTopics = rssResults.flat();
 
-  const deduplicated = allRssTopics.filter(topic => {
-    const slug = slugify(topic.title);
-    return !existingSlugs.has(slug);
-  });
+  const deduplicated = allRssTopics.filter(topic => !existingKeys.has(dedupeKey(topic.title)));
 
   const live = deduplicated
     .sort((a, b) => b.score - a.score)

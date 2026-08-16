@@ -14,3 +14,9 @@
 
 /posts/free-ai-tools-that-beat-their-paid-versions-tested  /posts/free-ai-tools-that-beat-their-paid-versions/  301
 /posts/free-ai-tools-that-beat-their-paid-versions-tested/  /posts/free-ai-tools-that-beat-their-paid-versions/  301
+
+# 2026-08-16: the same article shipped twice (07-06 and 07-17) because topic
+# dedupe matched slugs exactly, and the year-stripping rule made the two slugs
+# differ. Consolidating on the 07-17 post, whose slug carries no year.
+/posts/the-only-3-ai-subscriptions-worth-paying-for-in-2026-and-5-to-cancel  /posts/the-only-3-ai-subscriptions-worth-paying-for-and-5-to-cancel/  301
+/posts/the-only-3-ai-subscriptions-worth-paying-for-in-2026-and-5-to-cancel/  /posts/the-only-3-ai-subscriptions-worth-paying-for-and-5-to-cancel/  301
